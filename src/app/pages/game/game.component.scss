@@ -133,3 +133,96 @@
   min-height: 50vh;
   color: var(--text-muted);
 }
+
+/* Game States Overrides */
+.game-content.countdown, .game-content.playing {
+  min-height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, var(--bg-card), #161a22);
+}
+
+.countdown-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.countdown-number {
+  font-size: 8rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-shadow: 0 0 40px rgba(29, 174, 193, 0.6);
+}
+
+.playing-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 24px;
+  width: 100%;
+  
+  .label {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .secret-word {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--text-main);
+    line-height: 1.1;
+    margin-bottom: 48px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--border);
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  
+  &:hover, &:active {
+    background: var(--bg-card);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}
+
+/* Animations */
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.bounce-in {
+  animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes reveal {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.reveal-animation {
+  animation: reveal 0.6s ease-out forwards;
+}

@@ -16,19 +16,42 @@
   </header>
 
   <!-- Game Content -->
-  <main class="game-content">
-    <div class="image-wrapper">
-      <img [src]="game.imageUrl" [alt]="game.name" />
-    </div>
-    
-    <div class="details">
-      <h1>{{ game.name }}</h1>
-      <p class="description">{{ game.description }}</p>
+  <main class="game-content" [ngClass]="{'playing': gameState === 'playing', 'countdown': gameState === 'countdown'}">
+    <!-- INFO STATE -->
+    <ng-container *ngIf="gameState === 'info'">
+      <div class="image-wrapper">
+        <img [src]="game.imageUrl" [alt]="game.name" />
+      </div>
       
-      <button class="btn-primary">
-        Iniciar o Jogo
-      </button>
-    </div>
+      <div class="details">
+        <h1>{{ game.name }}</h1>
+        <p class="description">{{ game.description }}</p>
+        
+        <button class="btn-primary" (click)="startGame()">
+          Iniciar o Jogo
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- COUNTDOWN STATE -->
+    <ng-container *ngIf="gameState === 'countdown'">
+      <div class="countdown-wrapper">
+        <div class="countdown-number bounce-in">{{ countdownValue }}</div>
+      </div>
+    </ng-container>
+
+    <!-- PLAYING STATE (QUEM SOU EU) -->
+    <ng-container *ngIf="gameState === 'playing'">
+      <div class="playing-wrapper">
+        <div class="label">Você é:</div>
+        <div class="secret-word reveal-animation">{{ secretWord }}</div>
+        
+        <button class="btn-secondary" (click)="resetGame()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          Reiniciar
+        </button>
+      </div>
+    </ng-container>
   </main>
 </div>
 
