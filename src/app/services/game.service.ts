@@ -43,6 +43,13 @@ const GAMES_DATA: Game[] = [
       'Um jogo de blefe e investigação! Todos os jogadores recebem a mesma pergunta, exceto um: o Impostor, que recebe uma pergunta diferente, mas com respostas parecidas. Após todos responderem, o grupo deve debater para identificar quem está fora de sintonia. O objetivo do Impostor é se misturar e não ser descoberto, enquanto os outros tentam desmascará-lo!',
     imageUrl: 'images/pergunta-do-impostor.png',
   },
+  {
+    id: 'contato',
+    name: 'Contato',
+    description:
+      'Um jogo de sincronia e dedução por letras! O mestre pensa em uma palavra e revela apenas a primeira letra. Os jogadores dão dicas para que outros jogadores tentem adivinhar palavras com essa inicial. Se dois jogadores fizerem "contato" e disserem a mesma palavra juntos após a contagem, o mestre revela a próxima letra. Mas cuidado: o mestre pode bloquear a jogada se ele adivinhar a palavra antes de vocês!',
+    imageUrl: 'images/contato.png',
+  },
 ];
 
 export const WORDS_QUEM_SOU_EU = [
@@ -122,6 +129,14 @@ export const WORDS_BATATA_QUENTE = [
   'Instrumentos Musicais',
 ];
 
+export const WORDS_CONTATO = [
+  'Laranja', 'Elefante', 'Girassol', 'Montanha', 'Bicicleta',
+  'Televisão', 'Cachorro', 'Pinguim', 'Espelho', 'Diamante',
+  'Sorvete', 'Bateria', 'Guitarra', 'Travesseiro', 'Abacaxi',
+  'Foguete', 'Canguru', 'Hospital', 'Ventilador', 'Sinfonia',
+  'Astronauta', 'Mochila', 'Biblioteca', 'Cicatriz', 'Helicóptero',
+];
+
 export interface ImpostorPair {
   q1: string;
   q2: string;
@@ -186,6 +201,11 @@ export class GameService {
   getRandomBatataQuenteTheme(): string {
     const randomIndex = Math.floor(Math.random() * WORDS_BATATA_QUENTE.length);
     return WORDS_BATATA_QUENTE[randomIndex];
+  }
+
+  getRandomContatoWord(): string {
+    const randomIndex = Math.floor(Math.random() * WORDS_CONTATO.length);
+    return WORDS_CONTATO[randomIndex];
   }
 
   getRandomImpostorPair(): ImpostorPair {

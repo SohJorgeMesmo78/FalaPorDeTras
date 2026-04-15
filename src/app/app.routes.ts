@@ -6,6 +6,7 @@ import { ChaOuCafeComponent } from './pages/play/cha-ou-cafe/cha-ou-cafe.compone
 import { ItoComponent } from './pages/play/ito/ito.component';
 import { BatataQuenteComponent } from './pages/play/batata-quente/batata-quente.component';
 import { PerguntaDoImpostorComponent } from './pages/play/pergunta-do-impostor/pergunta-do-impostor.component';
+import { ContatoComponent } from './pages/play/contato/contato.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'play/ito', component: ItoComponent },
   { path: 'play/batata-quente', component: BatataQuenteComponent },
   { path: 'play/pergunta-do-impostor', component: PerguntaDoImpostorComponent },
+  { path: 'play/contato', component: ContatoComponent },
   { path: '**', redirectTo: '' }
 ];

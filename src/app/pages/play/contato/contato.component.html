@@ -1,0 +1,53 @@
+<div class="container game">
+  <header class="game-header">
+    <a routerLink="/game/contato" class="back-btn" aria-label="Voltar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </a>
+    <div class="brand">Contato</div>
+    
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <!-- Toggle Timer Button -->
+      <button class="toggle-btn" (click)="gameService.showCountdown = !gameService.showCountdown" [class.active]="gameService.showCountdown" aria-label="Alternar Timer">
+         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </button>
+
+      <div class="socials">
+        <a href="https://www.instagram.com/falapordetras" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@falapordetras" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="game-content playing">
+    <div class="playing-wrapper">
+      
+      <div *ngIf="!shouldReveal" class="countdown popup-animation">
+        {{ timerSeconds }}
+      </div>
+
+      <ng-container *ngIf="shouldReveal">
+        <div class="label reveal-animation">Sua Palavra É:</div>
+        <div class="secret-word reveal-animation" style="margin-bottom: auto;">{{ secretWord }}</div>
+        
+        <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 16px; margin: 32px 0; border: 1px solid rgba(255,255,255,0.1);">
+          <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; margin: 0;">
+            O <span style="color: var(--primary); font-weight: bold;">Mestre</span> não deve revelar essa palavra. Apenas forneça a <span style="font-weight: bold; color: #fff;">primeira letra</span> para os jogadores criarem conexões!
+          </p>
+        </div>
+
+        <button class="btn-primary reveal-animation" style="margin-bottom: 24px;" (click)="refreshWord()">
+          Nova Palavra
+        </button>
+
+        <a routerLink="/" class="btn-secondary reveal-animation" style="border: none; text-decoration: underline;">
+          Menu Inicial
+        </a>
+      </ng-container>
+
+    </div>
+  </main>
+</div>
