@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+@import 'ngx-toastr/toastr';
 
 :root {
   --primary: #1DAEC1;
@@ -37,7 +38,305 @@ button {
 
 /* Utils */
 .container {
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 24px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+/* Home Grid Responsiveness */
+.home {
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+  }
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  position: relative;
+
+  &.active {
+    color: var(--primary);
+    border-color: var(--primary);
+    background: rgba(29, 174, 193, 0.1);
+  }
+
+  &:hover {
+    color: var(--primary);
+    transform: translateY(-2px);
+  }
+
+  .tooltip {
+    position: absolute;
+    bottom: -35px;
+    background: #000;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  &:hover .tooltip {
+    opacity: 1;
+  }
+}
+
+/* Common Game Styles */
+.game {
+  padding-top: 24px;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+
+  .back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+
+    &:hover, &:active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      transform: translateX(-4px);
+    }
+  }
+
+  .brand {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 16px rgba(29, 174, 193, 0.3);
+  }
+
+  .socials {
+    display: flex;
+    gap: 8px;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      transition: all 0.2s ease;
+
+      &:hover, &:active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+.game-content {
+  background: var(--bg-card);
+  border-radius: 32px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 280px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.details {
+  padding: 32px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 90%;
+  }
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 20px;
+  border-radius: 100px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px -8px rgba(29, 174, 193, 0.7);
+
+  &:hover, &:active {
+    background: var(--primary-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px -8px rgba(29, 174, 193, 0.9);
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  color: var(--text-muted);
+}
+
+/* Game Play States */
+.game-content.countdown, .game-content.playing {
+  min-height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, var(--bg-card), #161a22);
+}
+
+.countdown-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.countdown-number {
+  font-size: 8rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-shadow: 0 0 40px rgba(29, 174, 193, 0.6);
+}
+
+.playing-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 24px;
+  width: 100%;
+  
+  .label {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .secret-word {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--text-main);
+    line-height: 1.1;
+    margin-bottom: 48px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--border);
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  
+  &:hover, &:active {
+    background: var(--bg-card);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}
+
+/* Mutations/Animations */
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.bounce-in {
+  animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes reveal {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.reveal-animation {
+  animation: reveal 0.6s ease-out forwards;
 }

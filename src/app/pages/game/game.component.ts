@@ -1,95 +1,40 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { GameService, Game } from '../../services/game.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-game',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  templateUrl: './game.component.html',
-  styleUrl: './game.component.scss'
+  templateUrl: './game.component.html'
 })
 export class GameComponent implements OnInit {
   game: Game | undefined;
   route = inject(ActivatedRoute);
+  router = inject(Router);
   gameService = inject(GameService);
-
-  gameState: 'info' | 'countdown' | 'playing' = 'info';
-  countdownValue: number = 3;
-  secretWord: string = '';
+  toastr = inject(ToastrService);
 
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    console.log('Param ID:', id); // Log for debugging
     if (id) {
       this.game = await this.gameService.getGameById(id);
+      console.log('Game found:', this.game); // Log for debugging
     }
   }
 
   startGame() {
     if (this.game?.id === 'quem-sou-eu') {
-      this.startQuemSouEu();
+      this.router.navigate(['/play', this.game.id]);
+    } else if (this.game?.id === 'cha-ou-cafe') {
+      this.router.navigate(['/play', this.game.id]);
+    } else if (this.game?.id === 'ito') {
+      this.router.navigate(['/play', this.game.id]);
     } else {
-      // Default fallback if a generic game is clicked
-      alert('Em breve!');
-    }
-  }
-
-  startQuemSouEu() {
-    this.gameState = 'countdown';
-    this.countdownValue = 3;
-    this.playBeep(440);
-    this.vibrate(100);
-
-    const interval = setInterval(() => {
-      this.countdownValue--;
-      
-      if (this.countdownValue > 0) {
-        this.playBeep(440);
-        this.vibrate(100);
-      } else {
-        clearInterval(interval);
-        this.playBeep(880, 0.4);
-        this.vibrate([200, 100, 200]);
-        this.secretWord = this.gameService.getRandomQuemSouEuWord();
-        this.gameState = 'playing';
-      }
-    }, 1000);
-  }
-
-  resetGame() {
-    this.gameState = 'info';
-    this.secretWord = '';
-  }
-
-  playBeep(frequency: number, duration: number = 0.1) {
-    if (typeof window === 'undefined') return;
-    try {
-      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioCtx) return;
-      const audioCtx = new AudioCtx();
-      const oscillator = audioCtx.createOscillator();
-      const gainNode = audioCtx.createGain();
-      
-      oscillator.type = 'sine';
-      oscillator.frequency.value = frequency;
-      
-      gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-      
-      oscillator.connect(gainNode);
-      gainNode.connect(audioCtx.destination);
-      
-      oscillator.start();
-      oscillator.stop(audioCtx.currentTime + duration);
-    } catch (e) {
-      console.error('Audio falhou', e);
-    }
-  }
-
-  vibrate(pattern: number | number[]) {
-    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
-      navigator.vibrate(pattern);
+      this.toastr.info(`O jogo "${this.game?.name}" ainda está em construção 🚧`, 'Paciência!');
     }
   }
 

@@ -1,0 +1,39 @@
+<div class="container game">
+  <header class="game-header">
+    <a routerLink="/game/cha-ou-cafe" class="back-btn" aria-label="Voltar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </a>
+    <div class="brand">Chá ou Café?</div>
+    
+    <button class="toggle-btn" (click)="toggleCountdown()" [class.active]="gameService.showCountdown">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span class="tooltip">{{ gameService.showCountdown ? 'Desativar Contador' : 'Ativar Contador' }}</span>
+    </button>
+  </header>
+
+  <main class="game-content" [ngClass]="{'playing': gameState === 'playing', 'countdown': gameState === 'countdown'}">
+    <!-- COUNTDOWN -->
+    <ng-container *ngIf="gameState === 'countdown'">
+      <div class="countdown-wrapper">
+        <div class="countdown-number bounce-in">{{ countdownValue }}</div>
+      </div>
+    </ng-container>
+
+    <!-- PLAYING -->
+    <ng-container *ngIf="gameState === 'playing'">
+      <div class="playing-wrapper">
+        <div class="label">A palavra mágica é:</div>
+        <div class="secret-word reveal-animation">{{ secretWord }}</div>
+        
+        <button class="btn-primary" (click)="startChaOuCafe()" style="display: flex; justify-content: center; align-items: center; gap: 8px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          Sortear Novamente
+        </button>
+
+        <a routerLink="/" class="btn-secondary" style="margin-top: 16px;">
+          Voltar ao Menu Principal
+        </a>
+      </div>
+    </ng-container>
+  </main>
+</div>

@@ -22,22 +22,75 @@ const GAMES_DATA: Game[] = [
       'Um desafio de associação e raciocínio rápido! Um jogador escolhe uma palavra secreta e os outros devem adivinhá-la através de comparações. A cada rodada, é oferecida uma escolha entre duas opções sempre iniciando com "Chá ou Café?", e o jogador revela qual delas mais se aproxima do seu segredo. O objetivo é afunilar as possibilidades até que alguém descubra a palavra oculta!',
     imageUrl: 'images/cha-ou-cafe.png',
   },
+  {
+    id: 'ito',
+    name: 'Ito',
+    description:
+      'Um jogo cooperativo de percepção e intensidade! Cada jogador recebe um número secreto de 1 a 100 e deve dar uma dica baseada em um tema escolhido (ex: "Alimentos: do pior ao melhor"). O desafio é o grupo organizar todas as dicas em ordem crescente sem revelar os números. Será que a sua escala de valores é a mesma dos seus amigos?',
+    imageUrl: 'images/ito.png',
+  },
 ];
 
 export const WORDS_QUEM_SOU_EU = [
-  'Bob Esponja', 'Mickey Mouse', 'Homem-Aranha', 'Naruto', 'Batman',
-  'Pica-Pau', 'Homer Simpson', 'Mulher Maravilha', 'Harry Potter', 'Pikachu',
-  'Silvio Santos', 'Neymar', 'Anitta', 'Faustão', 'Pelé',
-  'Xuxa', 'Ivete Sangalo', 'Michael Jackson', 'Ronaldo Fenômeno', 'Tatá Werneck'
+  'Bob Esponja',
+  'Mickey Mouse',
+  'Homem-Aranha',
+  'Naruto',
+  'Batman',
+  'Pica-Pau',
+  'Homer Simpson',
+  'Mulher Maravilha',
+  'Harry Potter',
+  'Pikachu',
+  'Silvio Santos',
+  'Neymar',
+  'Anitta',
+  'Faustão',
+  'Pelé',
+  'Xuxa',
+  'Ivete Sangalo',
+  'Michael Jackson',
+  'Ronaldo Fenômeno',
+  'Tatá Werneck',
+];
+
+export const WORDS_CHA_OU_CAFE = [
+  'Cachorro-quente',
+  'Pão de Queijo',
+  'Brigadeiro',
+  'Feijoada',
+  'Açaí',
+  'Geladeira',
+  'Televisão',
+  'Bicicleta',
+  'Celular',
+  'Avião',
+  'Sílvia Santos',
+  'Monalisa',
+  'Cachorro',
+  'Gato',
+  'Leão',
+  'Praia',
+  'Montanha',
+  'Câmera Fotográfica',
+  'Violão',
+  'Piscina',
 ];
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
+  showCountdown: boolean = true;
+
   getRandomQuemSouEuWord(): string {
     const randomIndex = Math.floor(Math.random() * WORDS_QUEM_SOU_EU.length);
     return WORDS_QUEM_SOU_EU[randomIndex];
+  }
+
+  getRandomChaOuCafeWord(): string {
+    const randomIndex = Math.floor(Math.random() * WORDS_CHA_OU_CAFE.length);
+    return WORDS_CHA_OU_CAFE[randomIndex];
   }
 
   async getGames(): Promise<Game[]> {
