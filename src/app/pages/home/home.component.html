@@ -1,0 +1,19 @@
+<div class="container home">
+  <header class="home-header">
+    <div class="brand">Fala por de trás</div>
+    <p class="subtitle">Escolha o seu jogo 😈</p>
+  </header>
+
+  <div class="games-grid">
+    <a *ngFor="let game of games" [routerLink]="['/game', game.id]" class="game-card">
+      <div class="card-image-wrapper">
+        <img [src]="game.imageUrl" [alt]="game.name" class="card-image" />
+        <div class="card-overlay"></div>
+      </div>
+      <div class="card-content">
+        <h2>{{ game.name }}</h2>
+        <div class="play-icon">▶</div>
+      </div>
+    </a>
+  </div>
+</div>
