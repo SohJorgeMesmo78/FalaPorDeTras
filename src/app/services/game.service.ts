@@ -29,6 +29,13 @@ const GAMES_DATA: Game[] = [
       'Um jogo cooperativo de percepção e intensidade! Cada jogador recebe um número secreto de 1 a 100 e deve dar uma dica baseada em um tema escolhido (ex: "Alimentos: do pior ao melhor"). O desafio é o grupo organizar todas as dicas em ordem crescente sem revelar os números. Será que a sua escala de valores é a mesma dos seus amigos?',
     imageUrl: 'images/ito.png',
   },
+  {
+    id: 'batata-quente',
+    name: 'Batata Quente',
+    description:
+      'Um jogo de agilidade mental contra o relógio! Um tema é sorteado (ex: "Animais Mamíferos") e um cronômetro de 1 minuto começa a correr. Cada jogador deve dizer uma palavra relacionada ao tema sem repetir o que já foi dito. O objetivo é passar a vez rápido, pois quem estiver com a "bomba" na mão quando o tempo esgotar, perde!',
+    imageUrl: 'images/batata-quente.png',
+  },
 ];
 
 export const WORDS_QUEM_SOU_EU = [
@@ -110,7 +117,6 @@ export class GameService {
     const randomIndex = Math.floor(Math.random() * WORDS_ITO_THEMES.length);
     return WORDS_ITO_THEMES[randomIndex];
   }
-
 
   async getGames(): Promise<Game[]> {
     return GAMES_DATA;

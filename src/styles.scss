@@ -50,24 +50,7 @@ button {
   }
 }
 
-/* Home Grid Responsiveness */
-.home {
-  .games-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
 
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    @media (min-width: 992px) {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-  }
-}
 
 .toggle-btn {
   display: flex;
