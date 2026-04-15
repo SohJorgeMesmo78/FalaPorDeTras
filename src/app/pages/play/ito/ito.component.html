@@ -5,35 +5,66 @@
     </a>
     <div class="brand">Jogo ITO</div>
     
-    <button class="toggle-btn" (click)="toggleCountdown()" [class.active]="gameService.showCountdown">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <span class="tooltip">{{ gameService.showCountdown ? 'Desativar Contador' : 'Ativar Contador' }}</span>
-    </button>
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <div class="socials">
+        <a href="https://www.instagram.com/falapordetras" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@falapordetras" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a>
+      </div>
+    </div>
   </header>
 
-  <main class="game-content" [ngClass]="{'playing': gameState === 'playing', 'countdown': gameState === 'countdown'}">
-    <!-- COUNTDOWN -->
-    <ng-container *ngIf="gameState === 'countdown'">
-      <div class="countdown-wrapper">
-        <div class="countdown-number bounce-in">{{ countdownValue }}</div>
+  <main class="game-content playing">
+    
+    <!-- REVEAL_READY -->
+    <ng-container *ngIf="gameState === 'reveal_ready'">
+      <div class="playing-wrapper reveal-animation">
+        <div class="label" style="margin-bottom: 32px;">Passe o dispositivo para:</div>
+        <div class="secret-word" style="font-size: 3.5rem;">Jogador {{ currentPlayer }}</div>
+        
+        <button class="btn-primary" (click)="revealPlayerNumber()" style="margin-top: 48px; border-radius: 100px;">
+          Revelar meu Número
+        </button>
       </div>
     </ng-container>
 
-    <!-- PLAYING -->
-    <ng-container *ngIf="gameState === 'playing'">
-      <div class="playing-wrapper">
-        <div class="label">Seu número secreto é:</div>
-        <div class="secret-word reveal-animation" style="font-size: 6rem; color: var(--primary);">{{ secretNumber }}</div>
-        
-        <button class="btn-primary" (click)="startIto()" style="display: flex; justify-content: center; align-items: center; gap: 8px;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-          Sortear Novo Número
-        </button>
+    <!-- COUNTDOWN REMOVED -->
 
-        <a routerLink="/" class="btn-secondary" style="margin-top: 16px;">
-          Voltar ao Menu Principal
+    <!-- REVEALED -->
+    <ng-container *ngIf="gameState === 'revealed'">
+      <div class="playing-wrapper">
+        <div class="label">Jogador {{ currentPlayer }}, seu número é:</div>
+        <div class="secret-word reveal-animation" style="font-size: 7rem; color: var(--primary);">{{ currentSecretNumber }}</div>
+
+        <button class="btn-primary" (click)="nextPlayer()">
+          {{ currentPlayer < playersCount ? 'Esconder Número' : 'Esconder e Ver Tema' }}
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- FINISHED -->
+    <ng-container *ngIf="gameState === 'finished'">
+      <div class="playing-wrapper">
+        <div class="label" style="font-size: 1.5rem;">O Tema da rodada é:</div>
+        <div class="secret-word reveal-animation" style="font-size: 2.2rem; color: var(--text-main); margin-bottom: 60px;">{{ theme }}</div>
+
+        <div style="display: flex; gap: 16px; width: 100%; margin-bottom: 24px;">
+          <button class="btn-primary" (click)="changeTheme()" style="flex: 1; padding: 16px 8px;">
+            Trocar Tema
+          </button>
+          <button class="btn-primary" (click)="generateNewGame()" style="flex: 1; padding: 16px 8px;">
+            Jogar Novamente
+          </button>
+        </div>
+
+        <a routerLink="/" class="btn-secondary" style="border: none; text-decoration: underline;">
+          Menu Inicial
         </a>
       </div>
     </ng-container>
+
   </main>
 </div>

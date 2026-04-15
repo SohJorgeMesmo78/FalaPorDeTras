@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { GameService } from '../../../services/game.service';
 
 @Component({
@@ -12,51 +12,63 @@ import { GameService } from '../../../services/game.service';
 export class ItoComponent implements OnInit {
   gameService = inject(GameService);
   platformId = inject(PLATFORM_ID);
+  route = inject(ActivatedRoute);
 
-  gameState: 'countdown' | 'playing' = 'countdown';
-  countdownValue: number = 3;
-  secretNumber: number = 0;
+  gameState: 'reveal_ready' | 'revealed' | 'finished' = 'reveal_ready';
+  playersCount: number = 4;
+  currentPlayer: number = 1;
+  secretNumbers: number[] = [];
+  theme: string = '';
+  
+  currentSecretNumber: number = 0;
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.startIto();
-    }
-  }
-
-  startIto() {
-    if (!this.gameService.showCountdown) {
-      this.generateNumber();
-      this.gameState = 'playing';
-      return;
-    }
-
-    this.gameState = 'countdown';
-    this.countdownValue = 3;
-    this.playBeep(440);
-    this.vibrate(100);
-
-    const interval = setInterval(() => {
-      this.countdownValue--;
-      
-      if (this.countdownValue > 0) {
-        this.playBeep(440);
-        this.vibrate(100);
-      } else {
-        clearInterval(interval);
-        this.playBeep(880, 0.4);
-        this.vibrate([200, 100, 200]);
-        this.generateNumber();
-        this.gameState = 'playing';
+    this.route.queryParams.subscribe(params => {
+      this.playersCount = params['players'] ? parseInt(params['players'], 10) : 4;
+      if (isPlatformBrowser(this.platformId)) {
+        this.generateNewGame();
       }
-    }, 1000);
+    });
   }
 
-  generateNumber() {
-    this.secretNumber = Math.floor(Math.random() * 100) + 1;
+  generateNewGame() {
+    const availableNumbers = Array.from({length: 100}, (_, i) => i + 1);
+    for (let i = availableNumbers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [availableNumbers[i], availableNumbers[j]] = [availableNumbers[j], availableNumbers[i]];
+    }
+    
+    this.secretNumbers = availableNumbers.slice(0, this.playersCount);
+    this.currentPlayer = 1;
+    this.gameState = 'reveal_ready';
   }
 
-  toggleCountdown() {
-    this.gameService.showCountdown = !this.gameService.showCountdown;
+  revealPlayerNumber() {
+    this.currentSecretNumber = this.secretNumbers[this.currentPlayer - 1];
+    this.gameState = 'revealed';
+  }
+
+  nextPlayer() {
+    if (this.currentPlayer < this.playersCount) {
+      this.currentPlayer++;
+      this.gameState = 'reveal_ready';
+    } else {
+      this.finishGame();
+    }
+  }
+
+  finishGame() {
+    this.theme = this.gameService.getRandomItoTheme();
+    this.gameState = 'finished';
+  }
+
+  changeTheme() {
+    const backup = this.theme;
+    this.theme = '';
+    setTimeout(() => {
+      this.theme = this.gameService.getRandomItoTheme();
+      // Ensure we don't get the same theme twice in a row if possible, though random is fine
+    }, 0);
   }
 
   playBeep(frequency: number, duration: number = 0.1) {

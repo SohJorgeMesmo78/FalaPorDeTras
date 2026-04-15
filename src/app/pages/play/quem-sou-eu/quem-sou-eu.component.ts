@@ -25,8 +25,11 @@ export class QuemSouEuComponent implements OnInit {
 
   startQuemSouEu() {
     if (!this.gameService.showCountdown) {
-      this.secretWord = this.gameService.getRandomQuemSouEuWord();
-      this.gameState = 'playing';
+      this.gameState = null as any;
+      setTimeout(() => {
+        this.secretWord = this.gameService.getRandomQuemSouEuWord();
+        this.gameState = 'playing';
+      }, 0);
       return;
     }
 

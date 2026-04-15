@@ -25,8 +25,11 @@ export class ChaOuCafeComponent implements OnInit {
 
   startChaOuCafe() {
     if (!this.gameService.showCountdown) {
-      this.secretWord = this.gameService.getRandomChaOuCafeWord();
-      this.gameState = 'playing';
+      this.gameState = null as any;
+      setTimeout(() => {
+        this.secretWord = this.gameService.getRandomChaOuCafeWord();
+        this.gameState = 'playing';
+      }, 0);
       return;
     }
 

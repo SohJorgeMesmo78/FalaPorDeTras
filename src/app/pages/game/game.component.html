@@ -24,6 +24,15 @@
     <div class="details">
       <h1>{{ game.name }}</h1>
       <p class="description">{{ game.description }}</p>
+
+      <div class="player-stepper" *ngIf="game.id === 'ito'">
+        <label>Número de Jogadores:</label>
+        <div class="stepper-controls">
+          <button class="step-btn" (click)="players = players - 1" [disabled]="players <= 2">-</button>
+          <span class="step-value">{{ players }}</span>
+          <button class="step-btn" (click)="players = players + 1" [disabled]="players >= 100">+</button>
+        </div>
+      </div>
       
       <button class="btn-primary" (click)="startGame()">
         Iniciar o Jogo

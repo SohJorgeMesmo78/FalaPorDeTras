@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-@import 'ngx-toastr/toastr';
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap");
+@import "ngx-toastr/toastr";
 
 :root {
-  --primary: #1DAEC1;
+  --primary: #1daec1;
   --primary-hover: #168a99;
   --bg-dark: #121214;
   --bg-card: #202024;
@@ -17,8 +17,9 @@
   box-sizing: border-box;
 }
 
-html, body {
-  font-family: 'Inter', sans-serif;
+html,
+body {
+  font-family: "Inter", sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-main);
   min-height: 100vh;
@@ -134,7 +135,8 @@ button {
     border: 1px solid var(--border);
     transition: all 0.2s ease;
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
       background: var(--primary);
       border-color: var(--primary);
       color: #fff;
@@ -167,7 +169,8 @@ button {
       color: var(--text-main);
       transition: all 0.2s ease;
 
-      &:hover, &:active {
+      &:hover,
+      &:active {
         background: var(--primary);
         border-color: var(--primary);
         color: #fff;
@@ -182,7 +185,7 @@ button {
   border-radius: 32px;
   overflow: hidden;
   border: 1px solid var(--border);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .image-wrapper {
@@ -220,6 +223,59 @@ button {
   }
 }
 
+.player-stepper {
+  margin-bottom: 40px;
+  width: 100%;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+
+  label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .stepper-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+
+    .step-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-size: 1.5rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      &:not(:disabled):hover {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+      }
+    }
+
+    .step-value {
+      font-size: 2rem;
+      font-weight: 800;
+      min-width: 40px;
+    }
+  }
+}
+
 .btn-primary {
   width: 100%;
   padding: 20px;
@@ -233,7 +289,8 @@ button {
   transition: all 0.3s ease;
   box-shadow: 0 8px 24px -8px rgba(29, 174, 193, 0.7);
 
-  &:hover, &:active {
+  &:hover,
+  &:active {
     background: var(--primary-hover);
     transform: translateY(-4px);
     box-shadow: 0 12px 32px -8px rgba(29, 174, 193, 0.9);
@@ -249,7 +306,8 @@ button {
 }
 
 /* Game Play States */
-.game-content.countdown, .game-content.playing {
+.game-content.countdown,
+.game-content.playing {
   min-height: 480px;
   display: flex;
   justify-content: center;
@@ -280,7 +338,7 @@ button {
   text-align: center;
   padding: 40px 24px;
   width: 100%;
-  
+
   .label {
     font-size: 1.2rem;
     color: var(--text-muted);
@@ -288,7 +346,7 @@ button {
     text-transform: uppercase;
     letter-spacing: 2px;
   }
-  
+
   .secret-word {
     font-size: 2.8rem;
     font-weight: 900;
@@ -313,8 +371,9 @@ button {
   font-size: 1.1rem;
   font-weight: 700;
   transition: all 0.3s ease;
-  
-  &:hover, &:active {
+
+  &:hover,
+  &:active {
     background: var(--bg-card);
     border-color: var(--primary);
     color: var(--primary);
@@ -323,9 +382,18 @@ button {
 
 /* Mutations/Animations */
 @keyframes bounceIn {
-  0% { transform: scale(0.3); opacity: 0; }
-  50% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .bounce-in {
@@ -333,10 +401,16 @@ button {
 }
 
 @keyframes reveal {
-  0% { transform: translateY(20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: scale(0.9) translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
 }
 
 .reveal-animation {
-  animation: reveal 0.6s ease-out forwards;
+  animation: reveal 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }

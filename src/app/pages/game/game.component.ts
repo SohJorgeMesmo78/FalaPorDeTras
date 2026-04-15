@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class GameComponent implements OnInit {
   game: Game | undefined;
+  players: number = 4;
   route = inject(ActivatedRoute);
   router = inject(Router);
   gameService = inject(GameService);
@@ -32,7 +33,7 @@ export class GameComponent implements OnInit {
     } else if (this.game?.id === 'cha-ou-cafe') {
       this.router.navigate(['/play', this.game.id]);
     } else if (this.game?.id === 'ito') {
-      this.router.navigate(['/play', this.game.id]);
+      this.router.navigate(['/play', this.game.id], { queryParams: { players: this.players } });
     } else {
       this.toastr.info(`O jogo "${this.game?.name}" ainda está em construção 🚧`, 'Paciência!');
     }
