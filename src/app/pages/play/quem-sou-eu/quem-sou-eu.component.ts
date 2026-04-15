@@ -2,11 +2,12 @@ import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { GameService } from '../../../services/game.service';
+import { HeaderComponent } from '../../../components/header/header.component';
 
 @Component({
   selector: 'app-quem-sou-eu',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, HeaderComponent],
   templateUrl: './quem-sou-eu.component.html'
 })
 export class QuemSouEuComponent implements OnInit {

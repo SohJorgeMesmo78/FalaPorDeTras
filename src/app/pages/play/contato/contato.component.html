@@ -1,35 +1,26 @@
 <div class="container game">
-  <header class="game-header">
-    <a routerLink="/game/contato" class="back-btn" aria-label="Voltar">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-    </a>
-    <div class="brand">Contato</div>
+  <app-header backUrl="/game/contato"></app-header>
+
+  <main class="game-content" [ngClass]="{'playing': shouldReveal, 'countdown': !shouldReveal}">
     
-    <div style="display: flex; gap: 8px; align-items: center;">
-      <!-- Toggle Timer Button -->
-      <button class="toggle-btn" (click)="gameService.showCountdown = !gameService.showCountdown" [class.active]="gameService.showCountdown" aria-label="Alternar Timer">
-         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <div class="game-title-row" *ngIf="shouldReveal">
+      <h2>Contato</h2>
+      <button class="toggle-btn" (click)="gameService.showCountdown = !gameService.showCountdown" [class.active]="gameService.showCountdown">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span class="tooltip">{{ gameService.showCountdown ? 'Desativar Timer' : 'Ativar Timer' }}</span>
       </button>
-
-      <div class="socials">
-        <a href="https://www.instagram.com/falapordetras" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-        </a>
-        <a href="https://www.tiktok.com/@falapordetras" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-        </a>
-      </div>
     </div>
-  </header>
 
-  <main class="game-content playing">
-    <div class="playing-wrapper">
-      
-      <div *ngIf="!shouldReveal" class="countdown popup-animation">
-        {{ timerSeconds }}
+    <!-- COUNTDOWN -->
+    <ng-container *ngIf="!shouldReveal">
+      <div class="countdown-wrapper">
+        <div class="countdown-number bounce-in">{{ timerSeconds }}</div>
       </div>
+    </ng-container>
 
-      <ng-container *ngIf="shouldReveal">
+    <!-- PLAYING -->
+    <ng-container *ngIf="shouldReveal && secretWord">
+      <div class="playing-wrapper">
         <div class="label reveal-animation">Sua Palavra É:</div>
         <div class="secret-word reveal-animation" style="margin-bottom: auto;">{{ secretWord }}</div>
         
@@ -46,8 +37,8 @@
         <a routerLink="/" class="btn-secondary reveal-animation" style="border: none; text-decoration: underline;">
           Menu Inicial
         </a>
-      </ng-container>
+      </div>
+    </ng-container>
 
-    </div>
   </main>
 </div>

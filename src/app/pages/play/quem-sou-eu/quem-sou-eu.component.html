@@ -1,27 +1,16 @@
 <div class="container game">
-  <header class="game-header">
-    <a routerLink="/game/quem-sou-eu" class="back-btn" aria-label="Voltar">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-    </a>
-    <div class="brand">Quem Sou Eu?</div>
-    
-    <div style="display: flex; gap: 8px; align-items: center;">
-      <div class="socials">
-        <a href="https://www.instagram.com/falapordetras" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-        </a>
-        <a href="https://www.tiktok.com/@falapordetras" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-        </a>
-      </div>
-      <button class="toggle-btn" (click)="toggleCountdown()" [class.active]="gameService.showCountdown">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span class="tooltip">{{ gameService.showCountdown ? 'Desativar Contador' : 'Ativar Contador' }}</span>
-      </button>
-    </div>
-  </header>
+  <app-header backUrl="/game/quem-sou-eu"></app-header>
 
   <main class="game-content" [ngClass]="{'playing': gameState === 'playing', 'countdown': gameState === 'countdown'}">
+    
+    <div class="game-title-row" *ngIf="gameState === 'playing'">
+      <h2>Quem Sou Eu?</h2>
+      <button class="toggle-btn" (click)="toggleCountdown()" [class.active]="gameService.showCountdown">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span class="tooltip">{{ gameService.showCountdown ? 'Desativar Timer' : 'Ativar Timer' }}</span>
+      </button>
+    </div>
+
     <!-- COUNTDOWN -->
     <ng-container *ngIf="gameState === 'countdown'">
       <div class="countdown-wrapper">

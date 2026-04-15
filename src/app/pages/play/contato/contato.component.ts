@@ -2,11 +2,12 @@ import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { GameService } from '../../../services/game.service';
+import { HeaderComponent } from '../../../components/header/header.component';
 
 @Component({
   selector: 'app-contato',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, HeaderComponent],
   templateUrl: './contato.component.html'
 })
 export class ContatoComponent implements OnInit {
@@ -25,24 +26,27 @@ export class ContatoComponent implements OnInit {
   refreshWord() {
     if (this.timerInterval) clearInterval(this.timerInterval);
     this.timerSeconds = 3;
+    this.shouldReveal = false; // DOM drop to force animation later
+    this.secretWord = '';
     
     // Check global timer preference
     if (this.gameService.showCountdown && isPlatformBrowser(this.platformId)) {
-      this.shouldReveal = false;
       this.timerInterval = setInterval(() => {
         this.timerSeconds--;
         if (this.timerSeconds <= 0) {
           clearInterval(this.timerInterval);
-          this.shouldReveal = true;
           this.secretWord = this.gameService.getRandomContatoWord();
+          this.shouldReveal = true;
           this.playBeep();
         }
       }, 1000);
     } else {
       // Instant reveal
-      this.shouldReveal = true;
       if (isPlatformBrowser(this.platformId)) {
-         this.secretWord = this.gameService.getRandomContatoWord();
+         setTimeout(() => {
+           this.secretWord = this.gameService.getRandomContatoWord();
+           this.shouldReveal = true;
+         }, 50); // Small delay to guarantee DOM reflow for CSS animations
       }
     }
   }
