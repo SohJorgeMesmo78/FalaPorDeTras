@@ -1,0 +1,80 @@
+import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { RouterLink, ActivatedRoute } from '@angular/router';
+import { GameService } from '../../../services/game.service';
+
+@Component({
+  selector: 'app-pergunta-do-impostor',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
+  templateUrl: './pergunta-do-impostor.component.html'
+})
+export class PerguntaDoImpostorComponent implements OnInit {
+  gameService = inject(GameService);
+  platformId = inject(PLATFORM_ID);
+  route = inject(ActivatedRoute);
+
+  gameState: 'hidden' | 'revealed' | 'finished' = 'hidden';
+  
+  playersCount: number = 4;
+  impostersCount: number = 1;
+  currentPlayer: number = 1;
+  
+  normalQuestion: string = '';
+  impostorQuestion: string = '';
+  impostorIndexes: Set<number> = new Set();
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.playersCount = params['players'] ? parseInt(params['players'], 10) : 4;
+      this.impostersCount = params['imposters'] ? parseInt(params['imposters'], 10) : 1;
+      
+      if (isPlatformBrowser(this.platformId)) {
+        this.setupGame();
+      }
+    });
+  }
+
+  setupGame() {
+    const pair = this.gameService.getRandomImpostorPair();
+    
+    // Randomize which is normal and which is imposter so it's impossible to memorize by order
+    if (Math.random() > 0.5) {
+      this.normalQuestion = pair.q1;
+      this.impostorQuestion = pair.q2;
+    } else {
+      this.normalQuestion = pair.q2;
+      this.impostorQuestion = pair.q1;
+    }
+    
+    // Assign impostors randomly
+    this.impostorIndexes.clear();
+    while (this.impostorIndexes.size < this.impostersCount) {
+      const randomPlayer = Math.floor(Math.random() * this.playersCount) + 1;
+      this.impostorIndexes.add(randomPlayer);
+    }
+  }
+
+  revealQuestion() {
+    this.gameState = 'revealed';
+  }
+
+  nextPlayer() {
+    if (this.currentPlayer < this.playersCount) {
+      this.currentPlayer++;
+      this.gameState = 'hidden';
+    } else {
+      this.gameState = 'finished';
+    }
+  }
+
+  resetGame() {
+    this.setupGame();
+    this.currentPlayer = 1;
+    this.gameState = 'hidden';
+  }
+
+  get currentQuestion(): string {
+    return this.impostorIndexes.has(this.currentPlayer) ? this.impostorQuestion : this.normalQuestion;
+  }
+}

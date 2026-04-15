@@ -36,6 +36,13 @@ const GAMES_DATA: Game[] = [
       'Um jogo de agilidade mental contra o relógio! Um tema é sorteado (ex: "Animais Mamíferos") e um cronômetro de 1 minuto começa a correr. Cada jogador deve dizer uma palavra relacionada ao tema sem repetir o que já foi dito. O objetivo é passar a vez rápido, pois quem estiver com a "bomba" na mão quando o tempo esgotar, perde!',
     imageUrl: 'images/batata-quente.png',
   },
+  {
+    id: 'pergunta-do-impostor',
+    name: 'Pergunta do Impostor',
+    description:
+      'Um jogo de blefe e investigação! Todos os jogadores recebem a mesma pergunta, exceto um: o Impostor, que recebe uma pergunta diferente, mas com respostas parecidas. Após todos responderem, o grupo deve debater para identificar quem está fora de sintonia. O objetivo do Impostor é se misturar e não ser descoberto, enquanto os outros tentam desmascará-lo!',
+    imageUrl: 'images/pergunta-do-impostor.png',
+  },
 ];
 
 export const WORDS_QUEM_SOU_EU = [
@@ -115,6 +122,46 @@ export const WORDS_BATATA_QUENTE = [
   'Instrumentos Musicais',
 ];
 
+export interface ImpostorPair {
+  q1: string;
+  q2: string;
+}
+
+export const WORDS_IMPOSTOR_PAIRS: ImpostorPair[] = [
+  {
+    q1: 'Qual sua sobremesa favorita?',
+    q2: 'Qual sobremesa você menos gosta?',
+  },
+  {
+    q1: 'Qual superpoder você gostaria de ter?',
+    q2: 'Qual superpoder você acha o mais inútil?',
+  },
+  {
+    q1: 'Para qual país você adoraria viajar?',
+    q2: 'Em qual país você nunca moraria?',
+  },
+  {
+    q1: 'Qual animal doméstico você teria?',
+    q2: 'Qual animal você tem muito medo?',
+  },
+  {
+    q1: 'Qual seu filme de comédia favorito?',
+    q2: 'Qual filme te fez chorar muito?',
+  },
+  {
+    q1: 'Qual sua matéria preferida na escola?',
+    q2: 'Qual matéria escolar você era pior?',
+  },
+  {
+    q1: 'Qual sua rede social mais usada?',
+    q2: 'Qual rede social você apagaria se pudesse?',
+  },
+  {
+    q1: 'Qual cheiro você acha maravilhoso?',
+    q2: 'Qual cheiro te dá nojo na hora?',
+  },
+];
+
 @Injectable({
   providedIn: 'root',
 })
@@ -139,6 +186,11 @@ export class GameService {
   getRandomBatataQuenteTheme(): string {
     const randomIndex = Math.floor(Math.random() * WORDS_BATATA_QUENTE.length);
     return WORDS_BATATA_QUENTE[randomIndex];
+  }
+
+  getRandomImpostorPair(): ImpostorPair {
+    const randomIndex = Math.floor(Math.random() * WORDS_IMPOSTOR_PAIRS.length);
+    return WORDS_IMPOSTOR_PAIRS[randomIndex];
   }
 
   async getGames(): Promise<Game[]> {

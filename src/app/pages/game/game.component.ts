@@ -13,6 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 export class GameComponent implements OnInit {
   game: Game | undefined;
   players: number = 4;
+  imposters: number = 1;
+
   route = inject(ActivatedRoute);
   router = inject(Router);
   gameService = inject(GameService);
@@ -23,8 +25,21 @@ export class GameComponent implements OnInit {
     console.log('Param ID:', id); // Log for debugging
     if (id) {
       this.game = await this.gameService.getGameById(id);
-      console.log('Game found:', this.game); // Log for debugging
+      
+      // Override default players for specific games
+      if (this.game?.id === 'pergunta-do-impostor') {
+        this.players = 4;
+        this.imposters = 1;
+      }
     }
+  }
+
+  get maxImposters(): number {
+    return Math.floor(this.players / 2);
+  }
+
+  get minPlayers(): number {
+    return this.game?.id === 'pergunta-do-impostor' ? 3 : 2;
   }
 
   startGame() {
@@ -36,6 +51,8 @@ export class GameComponent implements OnInit {
       this.router.navigate(['/play', this.game.id], { queryParams: { players: this.players } });
     } else if (this.game?.id === 'batata-quente') {
       this.router.navigate(['/play', this.game.id], { queryParams: { players: this.players } });
+    } else if (this.game?.id === 'pergunta-do-impostor') {
+      this.router.navigate(['/play', this.game.id], { queryParams: { players: this.players, imposters: this.imposters } });
     } else {
       this.toastr.info(`O jogo "${this.game?.name}" ainda está em construção 🚧`, 'Paciência!');
     }
