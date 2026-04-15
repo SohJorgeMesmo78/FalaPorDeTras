@@ -34,6 +34,8 @@ export class GameComponent implements OnInit {
       this.router.navigate(['/play', this.game.id]);
     } else if (this.game?.id === 'ito') {
       this.router.navigate(['/play', this.game.id], { queryParams: { players: this.players } });
+    } else if (this.game?.id === 'batata-quente') {
+      this.router.navigate(['/play', this.game.id], { queryParams: { players: this.players } });
     } else {
       this.toastr.info(`O jogo "${this.game?.name}" ainda está em construção 🚧`, 'Paciência!');
     }

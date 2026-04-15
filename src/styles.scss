@@ -395,5 +395,52 @@ button {
 }
 
 .reveal-animation {
-  animation: reveal 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: reveal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Batata Quente Styles */
+.time-adjust-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  
+  &:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  
+  &:not(:disabled):hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+  }
+}
+
+@keyframes dangerPulse {
+  0% { transform: scale(1); color: var(--text-main); }
+  50% { transform: scale(1.05); color: #ff4a4a; text-shadow: 0 0 20px rgba(255, 74, 74, 0.5); }
+  100% { transform: scale(1); color: #ff4a4a; }
+}
+
+.danger-pulse {
+  animation: dangerPulse 0.5s infinite alternate;
+}
+
+.exploded-bg {
+  background: radial-gradient(circle at center, #3d0000 0%, var(--bg-dark) 100%) !important;
+  transition: background 0.2s ease;
+}
+
+.redo-btn:hover {
+  background: #d63636 !important;
+  box-shadow: 0 10px 40px rgba(255, 74, 74, 0.8) !important;
 }
