@@ -57,6 +57,13 @@ const GAMES_DATA: Game[] = [
       'Um jogo de blefe e investigação! Todos os jogadores recebem uma palavra secreta, exceto o Impostor, que recebe apenas uma dica genérica. Cada participante deve dizer uma única palavra relacionada ao segredo. O objetivo dos jogadores é identificar o infiltrado, enquanto o Impostor deve tentar se misturar e descobrir a palavra real antes de ser desmascarado!',
     imageUrl: 'images/impostor.png',
   },
+  {
+    id: 'adivinhe-a-palavra',
+    name: 'Adivinhe a Palavra',
+    description:
+      'Um desafio de vocabulário onde terminar a palavra é o que te faz perder! Os jogadores adicionam letras alternadamente para formar uma palavra oculta. O objetivo é evitar colocar a última letra que completa uma palavra válida. Se você acha que o jogador anterior inventou uma sequência impossível, pode lançar o "Duvido" — mas cuidado, se a palavra existir, quem perde é você!',
+    imageUrl: 'images/adivinhe-a-palavra.png',
+  },
 ];
 
 export const WORDS_QUEM_SOU_EU = [
@@ -189,13 +196,31 @@ export const WORDS_IMPOSTOR: ImpostorWord[] = [
   { word: 'Praia', hints: ['Sol', 'Areia', 'Mar', 'Férias', 'Verão'] },
   { word: 'Cinema', hints: ['Pipoca', 'Tela', 'Filme', 'Escuro', 'Cadeira'] },
   { word: 'Escola', hints: ['Lápis', 'Professor', 'Aula', 'Caderno', 'Prova'] },
-  { word: 'Hospital', hints: ['Médico', 'Remédio', 'Doente', 'Ambulância', 'Curativo'] },
-  { word: 'Natal', hints: ['Papai Noel', 'Árvore', 'Presente', 'Dezembro', 'Família'] },
-  { word: 'Cachorro', hints: ['Latido', 'Osso', 'Melhor Amigo', 'Pata', 'Estimação'] },
+  {
+    word: 'Hospital',
+    hints: ['Médico', 'Remédio', 'Doente', 'Ambulância', 'Curativo'],
+  },
+  {
+    word: 'Natal',
+    hints: ['Papai Noel', 'Árvore', 'Presente', 'Dezembro', 'Família'],
+  },
+  {
+    word: 'Cachorro',
+    hints: ['Latido', 'Osso', 'Melhor Amigo', 'Pata', 'Estimação'],
+  },
   { word: 'Café', hints: ['Xícara', 'Preto', 'Manhã', 'Acordar', 'Quente'] },
-  { word: 'Telefone', hints: ['Ligação', 'Celular', 'Número', 'Alô', 'Mensagem'] },
-  { word: 'Relógio', hints: ['Horas', 'Tempo', 'Pulso', 'Ponteiro', 'Despertador'] },
-  { word: 'Computador', hints: ['Teclado', 'Internet', 'Tela', 'Mouse', 'Programação'] }
+  {
+    word: 'Telefone',
+    hints: ['Ligação', 'Celular', 'Número', 'Alô', 'Mensagem'],
+  },
+  {
+    word: 'Relógio',
+    hints: ['Horas', 'Tempo', 'Pulso', 'Ponteiro', 'Despertador'],
+  },
+  {
+    word: 'Computador',
+    hints: ['Teclado', 'Internet', 'Tela', 'Mouse', 'Programação'],
+  },
 ];
 
 export const WORDS_IMPOSTOR_PAIRS: ImpostorPair[] = [
@@ -280,6 +305,11 @@ export class GameService {
   getRandomImpostorWord(): ImpostorWord {
     const randomIndex = Math.floor(Math.random() * WORDS_IMPOSTOR.length);
     return WORDS_IMPOSTOR[randomIndex];
+  }
+
+  getRandomLetter(): string {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    return letters[Math.floor(Math.random() * letters.length)];
   }
 
   async getGames(): Promise<Game[]> {

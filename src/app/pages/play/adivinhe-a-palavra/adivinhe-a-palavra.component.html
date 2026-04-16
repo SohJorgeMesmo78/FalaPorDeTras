@@ -1,0 +1,31 @@
+<div class="container game">
+  <app-header backUrl="/game/adivinhe-a-palavra"></app-header>
+
+  <main class="game-content playing">
+    <div class="game-title-row">
+      <h2>Adivinhe a Palavra</h2>
+    </div>
+
+    <div class="playing-wrapper reveal-animation" style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px;">
+      <div class="label" style="font-size: 1.5rem; margin-bottom: 24px;">A letra inicial é:</div>
+      
+      <div class="secret-word bounce-in" style="font-size: 12rem; line-height: 1; margin-bottom: 48px; color: var(--primary); text-shadow: 0 0 50px rgba(29, 174, 193, 0.4);">
+        {{ letter }}
+      </div>
+
+      <p style="color: var(--text-muted); text-align: center; margin-bottom: 48px; max-width: 300px; line-height: 1.6;">
+        Comecem a soletrar! Quem completar a palavra ou não conseguir pensar em uma nova, perde! ✍️
+      </p>
+
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 16px;">
+        <button class="btn-primary" (click)="generateNewLetter()">
+          Sortear Nova Letra
+        </button>
+        
+        <a routerLink="/" class="btn-secondary" style="border: none; text-decoration: underline;">
+          Menu Inicial
+        </a>
+      </div>
+    </div>
+  </main>
+</div>

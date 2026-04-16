@@ -62,7 +62,8 @@ export class GameComponent implements OnInit {
     if (
       this.game?.id === 'quem-sou-eu' ||
       this.game?.id === 'cha-ou-cafe' ||
-      this.game?.id === 'contato'
+      this.game?.id === 'contato' ||
+      this.game?.id === 'adivinhe-a-palavra'
     ) {
       // These games don't require the player list
       this.startGameWithPlayers();
@@ -132,6 +133,8 @@ export class GameComponent implements OnInit {
           hints: this.hasHint,
         },
       });
+    } else if (this.game?.id === 'adivinhe-a-palavra') {
+      this.router.navigate(['/play', this.game.id]);
     } else if (this.game?.id === 'contato') {
       this.router.navigate(['/play', this.game.id]);
     } else {

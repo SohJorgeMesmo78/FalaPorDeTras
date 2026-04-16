@@ -8,6 +8,7 @@ import { BatataQuenteComponent } from './pages/play/batata-quente/batata-quente.
 import { PerguntaDoImpostorComponent } from './pages/play/pergunta-do-impostor/pergunta-do-impostor.component';
 import { ContatoComponent } from './pages/play/contato/contato.component';
 import { ImpostorComponent } from './pages/play/impostor/impostor.component';
+import { AdivinheAPalavraComponent } from './pages/play/adivinhe-a-palavra/adivinhe-a-palavra.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,5 +20,6 @@ export const routes: Routes = [
   { path: 'play/pergunta-do-impostor', component: PerguntaDoImpostorComponent },
   { path: 'play/contato', component: ContatoComponent },
   { path: 'play/impostor', component: ImpostorComponent },
+  { path: 'play/adivinhe-a-palavra', component: AdivinheAPalavraComponent },
   { path: '**', redirectTo: '' }
 ];
