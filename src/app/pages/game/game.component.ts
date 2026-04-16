@@ -34,7 +34,8 @@ export class GameComponent implements OnInit {
       // Override default players for specific games
       if (
         this.game?.id === 'pergunta-do-impostor' ||
-        this.game?.id === 'impostor'
+        this.game?.id === 'impostor' ||
+        this.game?.id === 'onde-estou'
       ) {
         this.players = 4;
         this.imposters = 1;
@@ -62,7 +63,8 @@ export class GameComponent implements OnInit {
   get minPlayers(): number {
     if (this.game?.id === 'qual-e-a-nota') return 1;
     return this.game?.id === 'pergunta-do-impostor' ||
-      this.game?.id === 'impostor'
+      this.game?.id === 'impostor' ||
+      this.game?.id === 'onde-estou'
       ? 3
       : 2;
   }
@@ -135,7 +137,7 @@ export class GameComponent implements OnInit {
       this.router.navigate(['/play', this.game.id], {
         queryParams: { players: this.players, imposters: this.imposters },
       });
-    } else if (this.game?.id === 'impostor') {
+    } else if (this.game?.id === 'impostor' || this.game?.id === 'onde-estou') {
       this.router.navigate(['/play', this.game.id], {
         queryParams: {
           players: this.players,

@@ -78,6 +78,13 @@ const GAMES_DATA: Game[] = [
       'Uma corrida contra os adversários! Duplas se enfrentam para adivinhar uma lista de cinco palavras. O mestre de cada dupla deve dar dicas precisas para que seu parceiro acerte a palavra da vez. Se houver um erro, a dupla rival assume o controle para tentar "roubar" o ponto. Vence quem completar a lista primeiro!',
     imageUrl: 'images/jogo-da-lista.png',
   },
+  {
+    id: 'onde-estou',
+    name: '?',
+    description:
+      'Um jogo de dedução e espionagem em locais inusitados! Todos os jogadores sabem onde estão (ex: "Aeroporto"), exceto o Impostor. O objetivo é fazer perguntas estratégicas para descobrir quem está perdido, enquanto o Impostor tenta descobrir o local através das respostas dos outros. Seja discreto: se o Impostor descobrir o local, ele vence!',
+    imageUrl: 'images/onde-estou.png',
+  },
 ];
 
 export const WORDS_QUEM_SOU_EU = [
@@ -237,6 +244,69 @@ export const WORDS_IMPOSTOR: ImpostorWord[] = [
   },
 ];
 
+export const WORDS_ONDE_ESTOU: ImpostorWord[] = [
+  {
+    word: 'Escola',
+    hints: ['Crianças', 'Aprender', 'Lousa', 'Recreio', 'Mochilas'],
+  },
+  {
+    word: 'Hospital',
+    hints: ['Médicos', 'Saúde', 'Cuidado', 'Silêncio', 'Emergência'],
+  },
+  { word: 'Praia', hints: ['Areia', 'Sol', 'Mar', 'Férias', 'Bronzeador'] },
+  {
+    word: 'Supermercado',
+    hints: ['Carrinho', 'Compras', 'Caixa', 'Alimentos', 'Prateleiras'],
+  },
+  {
+    word: 'Academia',
+    hints: ['Pesos', 'Treino', 'Suor', 'Músculos', 'Esteira'],
+  },
+  {
+    word: 'Cinema',
+    hints: ['Pipoca', 'Tela Grande', 'Filme', 'Escuro', 'Ingresso'],
+  },
+  {
+    word: 'Restaurante',
+    hints: ['Comida', 'Garçom', 'Cardápio', 'Mesa', 'Conta'],
+  },
+  {
+    word: 'Aeroporto',
+    hints: ['Avião', 'Malas', 'Portão de Embarque', 'Passaporte', 'Viagem'],
+  },
+  {
+    word: 'Estádio de Futebol',
+    hints: ['Torcida', 'Campo', 'Gol', 'Bandeiras', 'Uniforme'],
+  },
+  {
+    word: 'Biblioteca',
+    hints: ['Livros', 'Silêncio', 'Estudo', 'Prateleiras', 'Leitura'],
+  },
+  {
+    word: 'Circo',
+    hints: ['Palhaço', 'Picadeiro', 'Pipoca', 'Malabares', 'Alegria'],
+  },
+  {
+    word: 'Zoológico',
+    hints: ['Animais', 'Gaiolas', 'Visitação', 'Natureza', 'Ingresso'],
+  },
+  {
+    word: 'Parque de Diversões',
+    hints: [
+      'Montanha-russa',
+      'Roda-gigante',
+      'Algodão Doce',
+      'Brinquedos',
+      'Fila',
+    ],
+  },
+  { word: 'Casamento', hints: ['Noiva', 'Festa', 'Bolo', 'Vestido', 'Igreja'] },
+  {
+    word: 'Escritório',
+    hints: ['Trabalho', 'Computador', 'Reunião', 'Café', 'Mesa'],
+  },
+];
+
 export const WORDS_IMPOSTOR_PAIRS: ImpostorPair[] = [
   {
     q1: 'Qual sua sobremesa favorita?',
@@ -321,20 +391,37 @@ export class GameService {
     return WORDS_IMPOSTOR[randomIndex];
   }
 
+  getRandomOndeEstouWord(): ImpostorWord {
+    const randomIndex = Math.floor(Math.random() * WORDS_ONDE_ESTOU.length);
+    return WORDS_ONDE_ESTOU[randomIndex];
+  }
+
   getRandomLetter(): string {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     return letters[Math.floor(Math.random() * letters.length)];
   }
 
   getRandomWord(excludeList: string[] = []): string {
-    const allWords = [...new Set([...WORDS_CHA_OU_CAFE, ...WORDS_CONTATO, ...WORDS_IMPOSTOR.map(i => i.word)])];
-    const filtered = allWords.filter(w => !excludeList.includes(w));
+    const allWords = [
+      ...new Set([
+        ...WORDS_CHA_OU_CAFE,
+        ...WORDS_CONTATO,
+        ...WORDS_IMPOSTOR.map((i) => i.word),
+      ]),
+    ];
+    const filtered = allWords.filter((w) => !excludeList.includes(w));
     const randomIndex = Math.floor(Math.random() * filtered.length);
     return filtered[randomIndex] || 'Segredo';
   }
 
   getRandomWordList(count: number): string[] {
-    const allWords = [...new Set([...WORDS_CHA_OU_CAFE, ...WORDS_CONTATO, ...WORDS_IMPOSTOR.map(i => i.word)])];
+    const allWords = [
+      ...new Set([
+        ...WORDS_CHA_OU_CAFE,
+        ...WORDS_CONTATO,
+        ...WORDS_IMPOSTOR.map((i) => i.word),
+      ]),
+    ];
     const shuffled = [...allWords].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
   }

@@ -25,7 +25,7 @@
       <h1>{{ game.name }}</h1>
       <p class="description">{{ game.description }}</p>
 
-      <div class="player-stepper" *ngIf="game.id === 'ito' || game.id === 'batata-quente' || game.id === 'pergunta-do-impostor' || game.id === 'impostor' || game.id === 'qual-e-a-nota' || game.id === 'jogo-da-lista'">
+      <div class="player-stepper" *ngIf="game.id === 'ito' || game.id === 'batata-quente' || game.id === 'pergunta-do-impostor' || game.id === 'impostor' || game.id === 'qual-e-a-nota' || game.id === 'jogo-da-lista' || game.id === 'onde-estou'">
         <label>
           {{ game.id === 'qual-e-a-nota' ? 'Número de Duplas:' : 
              game.id === 'jogo-da-lista' ? 'Quantidade de Palavras:' : 'Número de Jogadores:' }}
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="player-stepper" *ngIf="game.id === 'pergunta-do-impostor' || game.id === 'impostor'" style="margin-top: 16px;">
+      <div class="player-stepper" *ngIf="game.id === 'pergunta-do-impostor' || game.id === 'impostor' || game.id === 'onde-estou'" style="margin-top: 16px;">
         <label>Quantidade de Impostores:</label>
         <div class="stepper-controls">
           <button class="step-btn" (click)="imposters = imposters - 1" [disabled]="imposters <= 1">-</button>
@@ -48,7 +48,7 @@
       </div>
 
       <!-- Hint Toggle for Impostor Game -->
-      <div class="player-stepper" *ngIf="game.id === 'impostor'" style="margin-top: 16px; background: rgba(29, 174, 193, 0.05); border: 1px solid rgba(29, 174, 193, 0.2);">
+      <div class="player-stepper" *ngIf="game.id === 'impostor' || game.id === 'onde-estou'" style="margin-top: 16px; background: rgba(29, 174, 193, 0.05); border: 1px solid rgba(29, 174, 193, 0.2);">
         <label style="color: var(--primary); margin-bottom: 0;">Imposto recebe Dica?</label>
         <div style="display: flex; align-items: center; gap: 12px; margin-top: 12px;">
            <span style="font-size: 0.9rem;" [style.opacity]="!hasHint ? '1' : '0.4'">Não</span>

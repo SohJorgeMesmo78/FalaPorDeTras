@@ -11,6 +11,7 @@ import { ImpostorComponent } from './pages/play/impostor/impostor.component';
 import { AdivinheAPalavraComponent } from './pages/play/adivinhe-a-palavra/adivinhe-a-palavra.component';
 import { QualEANotaComponent } from './pages/play/qual-e-a-nota/qual-e-a-nota.component';
 import { JogoDaListaComponent } from './pages/play/jogo-da-lista/jogo-da-lista.component';
+import { OndeEstouComponent } from './pages/play/onde-estou/onde-estou.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'play/adivinhe-a-palavra', component: AdivinheAPalavraComponent },
   { path: 'play/qual-e-a-nota', component: QualEANotaComponent },
   { path: 'play/jogo-da-lista', component: JogoDaListaComponent },
+  { path: 'play/onde-estou', component: OndeEstouComponent },
   { path: '**', redirectTo: '' }
 ];
