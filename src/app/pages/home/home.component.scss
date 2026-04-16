@@ -42,9 +42,9 @@
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.05);
       color: var(--text-main);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
-      
+
       &:hover {
         background: var(--primary);
         color: #fff;
@@ -71,7 +71,25 @@
   margin: 0 auto;
 
   @media (min-width: 600px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 24px;
+  }
+
+  @media (min-width: 1000px) {
     grid-template-columns: repeat(4, 1fr);
+    max-width: 900px;
+    gap: 32px 24px;
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 1000px;
+    gap: 32px 24px;
+  }
+
+  @media (min-width: 1400px) {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 1200px;
     gap: 32px 24px;
   }
 }

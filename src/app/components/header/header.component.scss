@@ -21,18 +21,18 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 900;
-    background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+    background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    filter: drop-shadow(0 0 15px rgba(29, 174, 193, 0.4));
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 20px rgba(29, 174, 193, 0.4));
     white-space: nowrap;
     
     @media (max-width: 380px) {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
   }
 
@@ -40,41 +40,44 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--text-main);
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
     &:hover {
       background: var(--primary);
       color: #fff;
-      transform: translateX(-4px);
+      border-color: var(--primary);
+      transform: translateX(-4px) scale(1.1);
+      box-shadow: 0 0 20px var(--primary-glow);
     }
   }
 
   .socials {
-    gap: 8px;
+    gap: 10px;
     
     a {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.03);
       color: var(--text-main);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       
       &:hover {
         background: var(--primary);
         color: #fff;
         border-color: var(--primary);
-        transform: translateY(-3px);
+        transform: translateY(-4px) scale(1.1);
+        box-shadow: 0 0 20px var(--primary-glow);
       }
     }
   }

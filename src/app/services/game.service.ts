@@ -80,7 +80,7 @@ const GAMES_DATA: Game[] = [
   },
   {
     id: 'onde-estou',
-    name: '?',
+    name: 'Onde estou?',
     description:
       'Um jogo de dedução e espionagem em locais inusitados! Todos os jogadores sabem onde estão (ex: "Aeroporto"), exceto o Impostor. O objetivo é fazer perguntas estratégicas para descobrir quem está perdido, enquanto o Impostor tenta descobrir o local através das respostas dos outros. Seja discreto: se o Impostor descobrir o local, ele vence!',
     imageUrl: 'images/onde-estou.png',

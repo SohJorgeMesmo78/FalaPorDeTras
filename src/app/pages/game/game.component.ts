@@ -102,21 +102,21 @@ export class GameComponent implements OnInit {
   checkSpecialName(player: PlayerProfile) {
     const name = player.name.toLowerCase().trim();
 
-    // Jorge / Jooj
+    // Jorge / Jooj (Laranja Bebê)
     if (name === 'jorge' || name === 'jooj') {
-      player.color = '#FFAA00';
+      player.color = '#FFCC80';
     }
-    // Marina / Mari
+    // Marina / Mari (Azul Bebê)
     else if (name === 'marina' || name === 'mari') {
-      player.color = '#003B94';
+      player.color = '#B3E5FC';
     }
-    // Matheus / Theu / Theus
+    // Matheus / Theu / Theus (Verde Bebê)
     else if (name === 'matheus' || name === 'theu' || name === 'theus') {
-      player.color = '#0A9400';
+      player.color = '#C8E6C9';
     }
-    // Gabriela / Gabi
+    // Gabriela / Gabi (Rosa Bebê)
     else if (name === 'gabriela' || name === 'gabi') {
-      player.color = '#940059';
+      player.color = '#F8BBD0';
     }
   }
 
