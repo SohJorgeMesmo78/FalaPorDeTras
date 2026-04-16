@@ -40,6 +40,10 @@ export class GameComponent implements OnInit {
         this.imposters = 1;
         this.hasHint = true;
       }
+
+      if (this.game?.id === 'qual-e-a-nota') {
+        this.players = 2;
+      }
     }
   }
 
@@ -52,6 +56,7 @@ export class GameComponent implements OnInit {
   }
 
   get minPlayers(): number {
+    if (this.game?.id === 'qual-e-a-nota') return 1;
     return this.game?.id === 'pergunta-do-impostor' ||
       this.game?.id === 'impostor'
       ? 3
@@ -135,6 +140,10 @@ export class GameComponent implements OnInit {
       });
     } else if (this.game?.id === 'adivinhe-a-palavra') {
       this.router.navigate(['/play', this.game.id]);
+    } else if (this.game?.id === 'qual-e-a-nota') {
+      this.router.navigate(['/play', this.game.id], {
+        queryParams: { pairs: this.players },
+      });
     } else if (this.game?.id === 'contato') {
       this.router.navigate(['/play', this.game.id]);
     } else {

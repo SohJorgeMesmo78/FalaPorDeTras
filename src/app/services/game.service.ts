@@ -64,6 +64,13 @@ const GAMES_DATA: Game[] = [
       'Um desafio de vocabulário onde terminar a palavra é o que te faz perder! Os jogadores adicionam letras alternadamente para formar uma palavra oculta. O objetivo é evitar colocar a última letra que completa uma palavra válida. Se você acha que o jogador anterior inventou uma sequência impossível, pode lançar o "Duvido" — mas cuidado, se a palavra existir, quem perde é você!',
     imageUrl: 'images/adivinhe-a-palavra.png',
   },
+  {
+    id: 'qual-e-a-nota',
+    name: 'Qual é a Nota?',
+    description:
+      'Um teste de sintonia e interpretação em duplas! Um jogador conhece uma nota secreta de 1 a 10 e deve dar uma dica baseada em um tema (ex: "Superpoderes: 1 é inútil, 10 é apocalíptico"). O parceiro precisa decifrar a dica e adivinhar exatamente qual foi a nota atribuída. Quanto mais próxima a resposta, maior a conexão da dupla!',
+    imageUrl: 'images/qual-e-a-nota.png',
+  },
 ];
 
 export const WORDS_QUEM_SOU_EU = [

@@ -9,6 +9,7 @@ import { PerguntaDoImpostorComponent } from './pages/play/pergunta-do-impostor/p
 import { ContatoComponent } from './pages/play/contato/contato.component';
 import { ImpostorComponent } from './pages/play/impostor/impostor.component';
 import { AdivinheAPalavraComponent } from './pages/play/adivinhe-a-palavra/adivinhe-a-palavra.component';
+import { QualEANotaComponent } from './pages/play/qual-e-a-nota/qual-e-a-nota.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'play/contato', component: ContatoComponent },
   { path: 'play/impostor', component: ImpostorComponent },
   { path: 'play/adivinhe-a-palavra', component: AdivinheAPalavraComponent },
+  { path: 'play/qual-e-a-nota', component: QualEANotaComponent },
   { path: '**', redirectTo: '' }
 ];
