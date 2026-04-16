@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   standalone: true,
   imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss'] // Using scss if needed for custom UI later
+  styleUrls: ['./game.component.scss'], // Using scss if needed for custom UI later
 })
 export class GameComponent implements OnInit {
   game: Game | undefined;
@@ -29,7 +29,7 @@ export class GameComponent implements OnInit {
     console.log('Param ID:', id); // Log for debugging
     if (id) {
       this.game = await this.gameService.getGameById(id);
-      
+
       // Override default players for specific games
       if (this.game?.id === 'pergunta-do-impostor') {
         this.players = 4;
@@ -47,47 +47,51 @@ export class GameComponent implements OnInit {
   }
 
   openPlayerConfig() {
-    if (this.game?.id === 'quem-sou-eu' || this.game?.id === 'cha-ou-cafe' || this.game?.id === 'contato') {
-       // These games don't require the player list
-       this.startGameWithPlayers();
-       return;
+    if (
+      this.game?.id === 'quem-sou-eu' ||
+      this.game?.id === 'cha-ou-cafe' ||
+      this.game?.id === 'contato'
+    ) {
+      // These games don't require the player list
+      this.startGameWithPlayers();
+      return;
     }
 
     // Populate players
     this.gameService.customPlayers = [];
     for (let i = 1; i <= this.players; i++) {
-       this.gameService.customPlayers.push({
-          id: i,
-          name: '',
-          color: this.gameService.generateVibrantColor()
-       });
+      this.gameService.customPlayers.push({
+        id: i,
+        name: '',
+        color: this.gameService.generateVibrantColor(),
+      });
     }
 
     this.showPlayerSelector = true;
   }
 
   randomizeColor(player: PlayerProfile) {
-     player.color = this.gameService.generateVibrantColor();
+    player.color = this.gameService.generateVibrantColor();
   }
 
   checkSpecialName(player: PlayerProfile) {
     const name = player.name.toLowerCase().trim();
-    
+
     // Jorge / Jooj
     if (name === 'jorge' || name === 'jooj') {
       player.color = '#FFAA00';
-    } 
+    }
     // Marina / Mari
     else if (name === 'marina' || name === 'mari') {
-      player.color = '#654321';
+      player.color = '#003B94';
     }
     // Matheus / Theu / Theus
     else if (name === 'matheus' || name === 'theu' || name === 'theus') {
-      player.color = '#00801E';
+      player.color = '#0A9400';
     }
     // Gabriela / Gabi
     else if (name === 'gabriela' || name === 'gabi') {
-      player.color = '#AD00FF';
+      player.color = '#940059';
     }
   }
 
@@ -97,18 +101,31 @@ export class GameComponent implements OnInit {
     } else if (this.game?.id === 'cha-ou-cafe') {
       this.router.navigate(['/play', this.game.id]);
     } else if (this.game?.id === 'ito') {
-      this.router.navigate(['/play', this.game.id], { queryParams: { players: this.players } });
+      this.router.navigate(['/play', this.game.id], {
+        queryParams: { players: this.players },
+      });
     } else if (this.game?.id === 'batata-quente') {
-      this.router.navigate(['/play', this.game.id], { queryParams: { players: this.players } });
+      this.router.navigate(['/play', this.game.id], {
+        queryParams: { players: this.players },
+      });
     } else if (this.game?.id === 'pergunta-do-impostor') {
-      this.router.navigate(['/play', this.game.id], { queryParams: { players: this.players, imposters: this.imposters } });
+      this.router.navigate(['/play', this.game.id], {
+        queryParams: { players: this.players, imposters: this.imposters },
+      });
     } else if (this.game?.id === 'contato') {
       this.router.navigate(['/play', this.game.id]);
     } else {
-      this.toastr.info(`O jogo "${this.game?.name}" ainda está em construção 🚧`, 'Paciência!');
+      this.toastr.info(
+        `O jogo "${this.game?.name}" ainda está em construção 🚧`,
+        'Paciência!',
+      );
     }
   }
 
-  get tiktokUrl() { return 'https://www.tiktok.com/@falapordetras'; }
-  get instagramUrl() { return 'https://www.instagram.com/falapordetras'; }
+  get tiktokUrl() {
+    return 'https://www.tiktok.com/@falapordetras';
+  }
+  get instagramUrl() {
+    return 'https://www.instagram.com/falapordetras';
+  }
 }
