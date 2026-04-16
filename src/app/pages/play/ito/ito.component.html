@@ -10,8 +10,8 @@
     <ng-container *ngIf="gameState === 'reveal_ready'">
       <div class="playing-wrapper reveal-animation">
         <div class="label" style="margin-bottom: 32px;">Passe o dispositivo para:</div>
-        <div class="secret-word" [style.color]="currentPlayerData?.color" style="font-size: 3.5rem;">
-          {{ currentPlayerData?.name || 'Jogador ' + currentPlayer }}
+        <div class="secret-word" [style.color]="currentPlayerData.color" style="font-size: 3.5rem;">
+          {{ currentPlayerData.name || 'Jogador ' + currentPlayer }}
         </div>
         
         <button class="btn-primary" (click)="revealPlayerNumber()" style="margin-top: 48px; border-radius: 100px;">
@@ -24,9 +24,9 @@
     <ng-container *ngIf="gameState === 'revealed'">
       <div class="playing-wrapper">
         <div class="label">
-          <span [style.color]="currentPlayerData?.color">{{ currentPlayerData?.name || 'Jogador ' + currentPlayer }}</span>, seu número é:
+          <span [style.color]="currentPlayerData.color">{{ currentPlayerData.name || 'Jogador ' + currentPlayer }}</span>, seu número é:
         </div>
-        <div class="secret-word reveal-animation" [style.color]="currentPlayerData?.color" style="font-size: 7rem;">{{ currentSecretNumber }}</div>
+        <div class="secret-word reveal-animation" [style.color]="currentPlayerData.color" style="font-size: 7rem;">{{ currentSecretNumber }}</div>
 
         <button class="btn-primary" (click)="nextPlayer()">
           {{ currentPlayer < playersCount ? 'Esconder Número' : 'Esconder e Ver Tema' }}

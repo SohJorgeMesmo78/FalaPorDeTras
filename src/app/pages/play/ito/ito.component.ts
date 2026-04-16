@@ -2,6 +2,7 @@ import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { GameService } from '../../../services/game.service';
+import { ItoService } from '../../../services/ito.service';
 import { HeaderComponent } from '../../../components/header/header.component';
 
 @Component({
@@ -12,6 +13,7 @@ import { HeaderComponent } from '../../../components/header/header.component';
 })
 export class ItoComponent implements OnInit {
   gameService = inject(GameService);
+  itoService = inject(ItoService);
   platformId = inject(PLATFORM_ID);
   route = inject(ActivatedRoute);
 
@@ -63,7 +65,7 @@ export class ItoComponent implements OnInit {
   }
 
   finishGame() {
-    this.theme = this.gameService.getRandomItoTheme();
+    this.theme = this.itoService.getRandomTheme();
     this.gameState = 'finished';
   }
 
@@ -71,7 +73,7 @@ export class ItoComponent implements OnInit {
     const backup = this.theme;
     this.theme = '';
     setTimeout(() => {
-      this.theme = this.gameService.getRandomItoTheme();
+      this.theme = this.itoService.getRandomTheme();
       // Ensure we don't get the same theme twice in a row if possible, though random is fine
     }, 0);
   }

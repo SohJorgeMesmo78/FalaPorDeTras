@@ -2,7 +2,9 @@ import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { GameService } from '../../../services/game.service';
+import { ImpostorService } from '../../../services/impostor.service';
 import { HeaderComponent } from '../../../components/header/header.component';
+import { ImpostorPair } from '../../../models/game.models';
 
 @Component({
   selector: 'app-pergunta-do-impostor',
@@ -12,6 +14,7 @@ import { HeaderComponent } from '../../../components/header/header.component';
 })
 export class PerguntaDoImpostorComponent implements OnInit {
   gameService = inject(GameService);
+  impostorService = inject(ImpostorService);
   platformId = inject(PLATFORM_ID);
   route = inject(ActivatedRoute);
 
@@ -21,6 +24,7 @@ export class PerguntaDoImpostorComponent implements OnInit {
   impostersCount: number = 1;
   currentPlayer: number = 1;
   
+
   normalQuestion: string = '';
   impostorQuestion: string = '';
   impostorIndexes: Set<number> = new Set();
@@ -34,14 +38,12 @@ export class PerguntaDoImpostorComponent implements OnInit {
       this.playersCount = params['players'] ? parseInt(params['players'], 10) : 4;
       this.impostersCount = params['imposters'] ? parseInt(params['imposters'], 10) : 1;
       
-      if (isPlatformBrowser(this.platformId)) {
-        this.setupGame();
-      }
+      this.setupGame();
     });
   }
 
   setupGame() {
-    const pair = this.gameService.getRandomImpostorPair();
+    const pair = this.impostorService.getRandomPair();
     
     // Randomize which is normal and which is imposter so it's impossible to memorize by order
     if (Math.random() > 0.5) {

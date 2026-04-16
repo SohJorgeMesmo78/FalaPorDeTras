@@ -1,7 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { GameService, Game } from '../../services/game.service';
+import { GameService } from '../../services/game.service';
+import { Game } from '../../models/game.models';
 
 @Component({
   selector: 'app-home',

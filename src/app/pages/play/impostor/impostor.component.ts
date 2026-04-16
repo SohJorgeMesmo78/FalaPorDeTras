@@ -2,7 +2,9 @@ import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { GameService } from '../../../services/game.service';
+import { ImpostorService } from '../../../services/impostor.service';
 import { HeaderComponent } from '../../../components/header/header.component';
+import { ImpostorWord } from '../../../models/game.models';
 
 @Component({
   selector: 'app-impostor',
@@ -12,6 +14,7 @@ import { HeaderComponent } from '../../../components/header/header.component';
 })
 export class ImpostorComponent implements OnInit {
   gameService = inject(GameService);
+  impostorService = inject(ImpostorService);
   platformId = inject(PLATFORM_ID);
   route = inject(ActivatedRoute);
 
@@ -36,14 +39,12 @@ export class ImpostorComponent implements OnInit {
       this.impostersCount = params['imposters'] ? parseInt(params['imposters'], 10) : 1;
       this.hasHints = params['hints'] === 'true';
       
-      if (isPlatformBrowser(this.platformId)) {
-        this.setupGame();
-      }
+      this.setupGame();
     });
   }
 
   setupGame() {
-    const data = this.gameService.getRandomImpostorWord();
+    const data = this.impostorService.getRandomWord();
     this.currentWord = data.word;
     this.currentHint = data.hints[Math.floor(Math.random() * data.hints.length)];
     

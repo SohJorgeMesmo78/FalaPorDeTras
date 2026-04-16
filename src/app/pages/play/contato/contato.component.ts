@@ -2,6 +2,7 @@ import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { GameService } from '../../../services/game.service';
+import { ContatoService } from '../../../services/contato.service';
 import { HeaderComponent } from '../../../components/header/header.component';
 
 @Component({
@@ -12,6 +13,7 @@ import { HeaderComponent } from '../../../components/header/header.component';
 })
 export class ContatoComponent implements OnInit {
   gameService = inject(GameService);
+  contatoService = inject(ContatoService);
   platformId = inject(PLATFORM_ID);
   
   secretWord: string = '';
@@ -35,7 +37,7 @@ export class ContatoComponent implements OnInit {
         this.timerSeconds--;
         if (this.timerSeconds <= 0) {
           clearInterval(this.timerInterval);
-          this.secretWord = this.gameService.getRandomContatoWord();
+          this.secretWord = this.contatoService.getRandomWord();
           this.shouldReveal = true;
           this.playBeep();
         }
@@ -44,7 +46,7 @@ export class ContatoComponent implements OnInit {
       // Instant reveal
       if (isPlatformBrowser(this.platformId)) {
          setTimeout(() => {
-           this.secretWord = this.gameService.getRandomContatoWord();
+           this.secretWord = this.contatoService.getRandomWord();
            this.shouldReveal = true;
          }, 50); // Small delay to guarantee DOM reflow for CSS animations
       }

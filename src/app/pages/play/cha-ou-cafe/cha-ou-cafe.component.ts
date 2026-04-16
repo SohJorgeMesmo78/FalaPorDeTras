@@ -2,6 +2,7 @@ import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { GameService } from '../../../services/game.service';
+import { ChaOuCafeService } from '../../../services/cha-ou-cafe.service';
 import { HeaderComponent } from '../../../components/header/header.component';
 
 @Component({
@@ -12,6 +13,7 @@ import { HeaderComponent } from '../../../components/header/header.component';
 })
 export class ChaOuCafeComponent implements OnInit {
   gameService = inject(GameService);
+  chaOuCafeService = inject(ChaOuCafeService);
   platformId = inject(PLATFORM_ID);
 
   gameState: 'countdown' | 'playing' = 'countdown';
@@ -19,6 +21,7 @@ export class ChaOuCafeComponent implements OnInit {
   secretWord: string = '';
 
   ngOnInit() {
+    this.secretWord = this.chaOuCafeService.getRandomWord();
     if (isPlatformBrowser(this.platformId)) {
       this.startChaOuCafe();
     }
@@ -28,7 +31,7 @@ export class ChaOuCafeComponent implements OnInit {
     if (!this.gameService.showCountdown) {
       this.gameState = null as any;
       setTimeout(() => {
-        this.secretWord = this.gameService.getRandomChaOuCafeWord();
+        this.secretWord = this.chaOuCafeService.getRandomWord();
         this.gameState = 'playing';
       }, 0);
       return;
@@ -49,7 +52,7 @@ export class ChaOuCafeComponent implements OnInit {
         clearInterval(interval);
         this.playBeep(880, 0.4);
         this.vibrate([200, 100, 200]);
-        this.secretWord = this.gameService.getRandomChaOuCafeWord();
+        this.secretWord = this.chaOuCafeService.getRandomWord();
         this.gameState = 'playing';
       }
     }, 1000);

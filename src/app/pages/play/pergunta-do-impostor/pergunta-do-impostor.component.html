@@ -10,11 +10,11 @@
     <ng-container *ngIf="gameState === 'hidden'">
       <div class="playing-wrapper reveal-animation" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 24px;">
         <div class="label" style="font-size: 1.5rem; margin-bottom: 24px;">Passe o dispositivo para:</div>
-        <div class="theme-text" [style.color]="currentPlayerData?.color" style="font-size: 3rem; margin-bottom: 48px; font-weight: 900;">
-          {{ currentPlayerData?.name || 'Jogador ' + currentPlayer }}
+        <div class="theme-text" [style.color]="currentPlayerData.color" style="font-size: 3rem; margin-bottom: 48px; font-weight: 900;">
+          {{ currentPlayerData.name || 'Jogador ' + currentPlayer }}
         </div>
         
-        <button class="btn-primary" (click)="revealQuestion()" [style.background]="currentPlayerData?.color" [style.box-shadow]="'0 0 30px ' + currentPlayerData?.color" style="padding: 24px; border-radius: 20px; font-size: 1.5rem; margin-top: 24px; color: #000;">
+        <button class="btn-primary" (click)="revealQuestion()" [style.background]="currentPlayerData.color" [style.box-shadow]="'0 0 30px ' + currentPlayerData.color" style="padding: 24px; border-radius: 20px; font-size: 1.5rem; margin-top: 24px; color: #000;">
           Revelar Pergunta
         </button>
       </div>

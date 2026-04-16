@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { GameService } from '../../../services/game.service';
+import { BatataQuenteService } from '../../../services/batata-quente.service';
 import { HeaderComponent } from '../../../components/header/header.component';
 
 @Component({
@@ -12,6 +13,7 @@ import { HeaderComponent } from '../../../components/header/header.component';
 })
 export class BatataQuenteComponent implements OnInit, OnDestroy {
   gameService = inject(GameService);
+  batataQuenteService = inject(BatataQuenteService);
   platformId = inject(PLATFORM_ID);
   route = inject(ActivatedRoute);
 
@@ -32,7 +34,7 @@ export class BatataQuenteComponent implements OnInit, OnDestroy {
     this.route.queryParams.subscribe(params => {
       this.playersCount = params['players'] ? parseInt(params['players'], 10) : 4;
       if (isPlatformBrowser(this.platformId)) {
-        this.theme = this.gameService.getRandomBatataQuenteTheme();
+        this.theme = this.batataQuenteService.getRandomTheme();
       }
     });
   }
@@ -45,7 +47,7 @@ export class BatataQuenteComponent implements OnInit, OnDestroy {
     const backup = this.theme;
     this.theme = '';
     setTimeout(() => {
-      this.theme = this.gameService.getRandomBatataQuenteTheme();
+      this.theme = this.batataQuenteService.getRandomTheme();
     }, 0);
   }
   
@@ -126,7 +128,7 @@ export class BatataQuenteComponent implements OnInit, OnDestroy {
 
   resetGame() {
     this.timerValueSeconds = 60;
-    this.theme = this.gameService.getRandomBatataQuenteTheme();
+    this.theme = this.batataQuenteService.getRandomTheme();
     this.gameState = 'setup';
   }
 

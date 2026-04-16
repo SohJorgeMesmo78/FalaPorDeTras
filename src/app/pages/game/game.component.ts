@@ -2,7 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { GameService, Game, PlayerProfile } from '../../services/game.service';
+import { GameService } from '../../services/game.service';
+import { Game, PlayerProfile } from '../../models/game.models';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

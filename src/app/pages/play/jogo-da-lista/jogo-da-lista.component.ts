@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { GameService } from '../../../services/game.service';
+import { WordPoolService } from '../../../services/word-pool.service';
 import { HeaderComponent } from '../../../components/header/header.component';
 
 @Component({
@@ -12,6 +13,7 @@ import { HeaderComponent } from '../../../components/header/header.component';
 })
 export class JogoDaListaComponent implements OnInit {
   gameService = inject(GameService);
+  wordPoolService = inject(WordPoolService);
   route = inject(ActivatedRoute);
 
   words: string[] = [];
@@ -25,11 +27,11 @@ export class JogoDaListaComponent implements OnInit {
   }
 
   shuffleAll() {
-    this.words = this.gameService.getRandomWordList(this.count);
+    this.words = this.wordPoolService.getRandomWordList(this.count);
   }
 
   shuffleOne(index: number) {
-    const newWord = this.gameService.getRandomWord(this.words);
+    const newWord = this.wordPoolService.getRandomWord(this.words);
     this.words[index] = newWord;
   }
 }
