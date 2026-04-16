@@ -25,6 +25,10 @@ export class PerguntaDoImpostorComponent implements OnInit {
   impostorQuestion: string = '';
   impostorIndexes: Set<number> = new Set();
 
+  get currentPlayerData() {
+    return this.gameService.customPlayers[this.currentPlayer - 1];
+  }
+
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.playersCount = params['players'] ? parseInt(params['players'], 10) : 4;

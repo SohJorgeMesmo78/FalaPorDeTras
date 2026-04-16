@@ -23,6 +23,10 @@ export class ItoComponent implements OnInit {
   
   currentSecretNumber: number = 0;
 
+  get currentPlayerData() {
+    return this.gameService.customPlayers[this.currentPlayer - 1];
+  }
+
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.playersCount = params['players'] ? parseInt(params['players'], 10) : 4;

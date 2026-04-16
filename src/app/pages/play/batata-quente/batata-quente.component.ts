@@ -24,6 +24,10 @@ export class BatataQuenteComponent implements OnInit, OnDestroy {
   timerValueSeconds: number = 60;
   private intervalId: any;
 
+  get currentPlayerData() {
+    return this.gameService.customPlayers[this.currentPlayer - 1];
+  }
+
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.playersCount = params['players'] ? parseInt(params['players'], 10) : 4;

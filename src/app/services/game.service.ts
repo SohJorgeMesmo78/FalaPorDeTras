@@ -142,6 +142,12 @@ export interface ImpostorPair {
   q2: string;
 }
 
+export interface PlayerProfile {
+  id: number;
+  name: string;
+  color: string;
+}
+
 export const WORDS_IMPOSTOR_PAIRS: ImpostorPair[] = [
   {
     q1: 'Qual sua sobremesa favorita?',
@@ -182,6 +188,14 @@ export const WORDS_IMPOSTOR_PAIRS: ImpostorPair[] = [
 })
 export class GameService {
   showCountdown: boolean = true;
+  customPlayers: PlayerProfile[] = [];
+
+  generateVibrantColor(): string {
+    const hue = Math.floor(Math.random() * 360);
+    const saturation = 80 + Math.floor(Math.random() * 20); // 80-100%
+    const lightness = 60 + Math.floor(Math.random() * 20); // 60-80% (avoiding super darks)
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  }
 
   getRandomQuemSouEuWord(): string {
     const randomIndex = Math.floor(Math.random() * WORDS_QUEM_SOU_EU.length);

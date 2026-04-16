@@ -1,19 +1,23 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
-import { GameService, Game } from '../../services/game.service';
+import { FormsModule } from '@angular/forms';
+import { GameService, Game, PlayerProfile } from '../../services/game.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, RouterLink],
-  templateUrl: './game.component.html'
+  imports: [CommonModule, RouterLink, FormsModule],
+  templateUrl: './game.component.html',
+  styleUrls: ['./game.component.scss'] // Using scss if needed for custom UI later
 })
 export class GameComponent implements OnInit {
   game: Game | undefined;
   players: number = 4;
   imposters: number = 1;
+
+  showPlayerSelector: boolean = false;
 
   route = inject(ActivatedRoute);
   router = inject(Router);
@@ -42,7 +46,31 @@ export class GameComponent implements OnInit {
     return this.game?.id === 'pergunta-do-impostor' ? 3 : 2;
   }
 
-  startGame() {
+  openPlayerConfig() {
+    if (this.game?.id === 'quem-sou-eu' || this.game?.id === 'cha-ou-cafe' || this.game?.id === 'contato') {
+       // These games don't require the player list
+       this.startGameWithPlayers();
+       return;
+    }
+
+    // Populate players
+    this.gameService.customPlayers = [];
+    for (let i = 1; i <= this.players; i++) {
+       this.gameService.customPlayers.push({
+          id: i,
+          name: '',
+          color: this.gameService.generateVibrantColor()
+       });
+    }
+
+    this.showPlayerSelector = true;
+  }
+
+  randomizeColor(player: PlayerProfile) {
+     player.color = this.gameService.generateVibrantColor();
+  }
+
+  startGameWithPlayers() {
     if (this.game?.id === 'quem-sou-eu') {
       this.router.navigate(['/play', this.game.id]);
     } else if (this.game?.id === 'cha-ou-cafe') {
