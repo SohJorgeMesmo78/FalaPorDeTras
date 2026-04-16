@@ -1,0 +1,89 @@
+<div class="container game">
+  <app-header backUrl="/game/impostor"></app-header>
+
+  <main class="game-content playing">
+    <div class="game-title-row">
+      <h2>Impostor</h2>
+    </div>
+
+    <!-- HIDDEN STATE -->
+    <ng-container *ngIf="gameState === 'hidden'">
+      <div class="playing-wrapper reveal-animation" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 24px;">
+        <div class="label" style="font-size: 1.5rem; margin-bottom: 24px;">Passe o dispositivo para:</div>
+        <div class="theme-text" [style.color]="currentPlayerData?.color" style="font-size: 3rem; margin-bottom: 48px; font-weight: 900;">
+          {{ currentPlayerData?.name || 'Jogador ' + currentPlayer }}
+        </div>
+        
+        <button class="btn-primary" (click)="revealInfo()" [style.background]="currentPlayerData?.color" [style.box-shadow]="'0 0 30px ' + currentPlayerData?.color" style="padding: 24px; border-radius: 20px; font-size: 1.5rem; margin-top: 24px; color: #000;">
+          Ver minha Palavra
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- REVEALED STATE -->
+    <ng-container *ngIf="gameState === 'revealed'">
+      <div class="playing-wrapper reveal-animation" style="height: 100%; display: flex; flex-direction: column; padding: 24px;">
+        <div class="label" style="font-size: 1.1rem; color: var(--primary); margin-bottom: 24px; letter-spacing: 1px;">SUA INFORMAÇÃO É:</div>
+        
+        <div class="secret-word" style="font-size: 3rem; font-weight: 900; line-height: 1.4; margin-bottom: 12px; margin-top: 24px;">
+          <ng-container *ngIf="!isCurrentImpostor">{{ currentWord }}</ng-container>
+          <ng-container *ngIf="isCurrentImpostor">
+            <span *ngIf="hasHints" style="color: #ff4a4a; font-size: 2.5rem;">DICA: {{ currentHint }}</span>
+            <span *ngIf="!hasHints" style="color: #ff4a4a;">VOCÊ É O IMPOSTOR!</span>
+          </ng-container>
+        </div>
+
+        <p *ngIf="isCurrentImpostor" style="color: var(--text-muted); font-size: 1rem; margin-top: 8px;">
+           Tente descobrir a palavra real e se misturar entre os outros!
+        </p>
+
+        <p *ngIf="!isCurrentImpostor" style="color: var(--text-muted); font-size: 1rem; margin-top: 8px;">
+           Diga uma palavra que tenha a ver com esse segredo sem ser óbvio demais!
+        </p>
+        
+        <button class="btn-primary" (click)="nextPlayer()" style="margin-top: auto; border-radius: 20px; font-size: 1.2rem; padding: 20px;">
+          {{ currentPlayer < playersCount ? 'Ocultar e Próximo' : 'Ocultar e Debater' }}
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- DEBATE STATE -->
+    <ng-container *ngIf="gameState === 'debate'">
+      <div class="playing-wrapper reveal-animation" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 24px;">
+        <div class="label" style="font-size: 1.5rem; color: var(--primary); margin-bottom: 24px; font-weight: 800;">HORA DO DEBATE! 🗣️</div>
+        
+        <p style="font-size: 1.2rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 48px;">
+          Todos já receberam suas informações. Discutam para tentar descobrir quem é o infiltrado!
+        </p>
+
+        <button class="btn-primary" (click)="revealResults()" style="border-radius: 20px; padding: 24px;">
+          Revelar Resposta
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- FINISHED STATE (Debate Result) -->
+    <ng-container *ngIf="gameState === 'finished'">
+      <div class="playing-wrapper reveal-animation" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 24px;">
+        <div class="label" style="font-size: 1.5rem; color: #ffeb3b; margin-bottom: 24px; font-weight: 900;">A PALAVRA ERA:</div>
+        
+        <div class="secret-word" style="font-size: 3.5rem; font-weight: 900; line-height: 1.4; margin-bottom: 12px; color: #fff;">
+          {{ currentWord }}
+        </div>
+
+        <div class="label" style="font-size: 1.1rem; margin-top: 24px; color: #ff4a4a;">DICA DO IMPOSTOR:</div>
+        <div style="font-size: 1.8rem; font-weight: 700;">{{ currentHint }}</div>
+
+        <div style="margin-top: 48px; width: 100%;">
+          <button class="btn-primary" (click)="resetGame()" style="margin-bottom: 24px;">
+            Jogar Novamente
+          </button>
+          <a routerLink="/" class="btn-secondary" style="border: none; text-decoration: underline;">
+            Menu Inicial
+          </a>
+        </div>
+      </div>
+    </ng-container>
+
+  </main>
+</div>

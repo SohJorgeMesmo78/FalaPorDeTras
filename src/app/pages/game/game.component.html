@@ -25,7 +25,7 @@
       <h1>{{ game.name }}</h1>
       <p class="description">{{ game.description }}</p>
 
-      <div class="player-stepper" *ngIf="game.id === 'ito' || game.id === 'batata-quente' || game.id === 'pergunta-do-impostor'">
+      <div class="player-stepper" *ngIf="game.id === 'ito' || game.id === 'batata-quente' || game.id === 'pergunta-do-impostor' || game.id === 'impostor'">
         <label>Número de Jogadores:</label>
         <div class="stepper-controls">
           <button class="step-btn" (click)="players = players - 1; imposters = imposters > maxImposters ? maxImposters : imposters" [disabled]="players <= minPlayers">-</button>
@@ -34,17 +34,29 @@
         </div>
       </div>
 
-      <div class="player-stepper" *ngIf="game.id === 'pergunta-do-impostor'" style="margin-top: 16px;">
+      <div class="player-stepper" *ngIf="game.id === 'pergunta-do-impostor' || game.id === 'impostor'" style="margin-top: 16px;">
         <label>Quantidade de Impostores:</label>
         <div class="stepper-controls">
           <button class="step-btn" (click)="imposters = imposters - 1" [disabled]="imposters <= 1">-</button>
           <span class="step-value">{{ imposters }}</span>
           <button class="step-btn" (click)="imposters = imposters + 1" [disabled]="imposters >= maxImposters">+</button>
         </div>
-        <small style="color: var(--text-muted); display: block; text-align: center; margin-top: 8px;">(Máximo permitido: {{ maxImposters }})</small>
+        <small style="color: var(--text-muted); display: block; text-align: center; margin-top: 8px;">(Máximo permitido: {{ maxImposters }} | Recomendado: {{recommendedImposters}})</small>
+      </div>
+
+      <!-- Hint Toggle for Impostor Game -->
+      <div class="player-stepper" *ngIf="game.id === 'impostor'" style="margin-top: 16px; background: rgba(29, 174, 193, 0.05); border: 1px solid rgba(29, 174, 193, 0.2);">
+        <label style="color: var(--primary); margin-bottom: 0;">Imposto recebe Dica?</label>
+        <div style="display: flex; align-items: center; gap: 12px; margin-top: 12px;">
+           <span style="font-size: 0.9rem;" [style.opacity]="!hasHint ? '1' : '0.4'">Não</span>
+           <div class="toggle-switch" (click)="hasHint = !hasHint" [class.active]="hasHint">
+              <div class="switch-handle"></div>
+           </div>
+           <span style="font-size: 0.9rem;" [style.opacity]="hasHint ? '1' : '0.4'">Sim</span>
+        </div>
       </div>
       
-      <button class="btn-primary" (click)="openPlayerConfig()">
+      <button class="btn-primary" (click)="openPlayerConfig()" style="margin-top: 24px;">
         Continuar
       </button>
     </div>

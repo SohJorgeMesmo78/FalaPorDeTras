@@ -16,6 +16,7 @@ export class GameComponent implements OnInit {
   game: Game | undefined;
   players: number = 4;
   imposters: number = 1;
+  hasHint: boolean = true;
 
   showPlayerSelector: boolean = false;
 
@@ -31,19 +32,30 @@ export class GameComponent implements OnInit {
       this.game = await this.gameService.getGameById(id);
 
       // Override default players for specific games
-      if (this.game?.id === 'pergunta-do-impostor') {
+      if (
+        this.game?.id === 'pergunta-do-impostor' ||
+        this.game?.id === 'impostor'
+      ) {
         this.players = 4;
         this.imposters = 1;
+        this.hasHint = true;
       }
     }
   }
 
   get maxImposters(): number {
-    return Math.floor(this.players / 2);
+    return Math.floor((this.players - 1) / 2);
+  }
+
+  get recommendedImposters(): number {
+    return Math.floor((this.players - 1) / 3) || 1;
   }
 
   get minPlayers(): number {
-    return this.game?.id === 'pergunta-do-impostor' ? 3 : 2;
+    return this.game?.id === 'pergunta-do-impostor' ||
+      this.game?.id === 'impostor'
+      ? 3
+      : 2;
   }
 
   openPlayerConfig() {
@@ -111,6 +123,14 @@ export class GameComponent implements OnInit {
     } else if (this.game?.id === 'pergunta-do-impostor') {
       this.router.navigate(['/play', this.game.id], {
         queryParams: { players: this.players, imposters: this.imposters },
+      });
+    } else if (this.game?.id === 'impostor') {
+      this.router.navigate(['/play', this.game.id], {
+        queryParams: {
+          players: this.players,
+          imposters: this.imposters,
+          hints: this.hasHint,
+        },
       });
     } else if (this.game?.id === 'contato') {
       this.router.navigate(['/play', this.game.id]);
