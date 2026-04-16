@@ -70,6 +70,27 @@ export class GameComponent implements OnInit {
      player.color = this.gameService.generateVibrantColor();
   }
 
+  checkSpecialName(player: PlayerProfile) {
+    const name = player.name.toLowerCase().trim();
+    
+    // Jorge / Jooj
+    if (name === 'jorge' || name === 'jooj') {
+      player.color = '#FFAA00';
+    } 
+    // Marina / Mari
+    else if (name === 'marina' || name === 'mari') {
+      player.color = '#654321';
+    }
+    // Matheus / Theu / Theus
+    else if (name === 'matheus' || name === 'theu' || name === 'theus') {
+      player.color = '#00801E';
+    }
+    // Gabriela / Gabi
+    else if (name === 'gabriela' || name === 'gabi') {
+      player.color = '#AD00FF';
+    }
+  }
+
   startGameWithPlayers() {
     if (this.game?.id === 'quem-sou-eu') {
       this.router.navigate(['/play', this.game.id]);
