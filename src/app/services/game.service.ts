@@ -71,6 +71,13 @@ const GAMES_DATA: Game[] = [
       'Um teste de sintonia e interpretação em duplas! Um jogador conhece uma nota secreta de 1 a 10 e deve dar uma dica baseada em um tema (ex: "Superpoderes: 1 é inútil, 10 é apocalíptico"). O parceiro precisa decifrar a dica e adivinhar exatamente qual foi a nota atribuída. Quanto mais próxima a resposta, maior a conexão da dupla!',
     imageUrl: 'images/qual-e-a-nota.png',
   },
+  {
+    id: 'jogo-da-lista',
+    name: 'Jogo da Lista',
+    description:
+      'Uma corrida contra os adversários! Duplas se enfrentam para adivinhar uma lista de cinco palavras. O mestre de cada dupla deve dar dicas precisas para que seu parceiro acerte a palavra da vez. Se houver um erro, a dupla rival assume o controle para tentar "roubar" o ponto. Vence quem completar a lista primeiro!',
+    imageUrl: 'images/jogo-da-lista.png',
+  },
 ];
 
 export const WORDS_QUEM_SOU_EU = [
@@ -317,6 +324,19 @@ export class GameService {
   getRandomLetter(): string {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     return letters[Math.floor(Math.random() * letters.length)];
+  }
+
+  getRandomWord(excludeList: string[] = []): string {
+    const allWords = [...new Set([...WORDS_CHA_OU_CAFE, ...WORDS_CONTATO, ...WORDS_IMPOSTOR.map(i => i.word)])];
+    const filtered = allWords.filter(w => !excludeList.includes(w));
+    const randomIndex = Math.floor(Math.random() * filtered.length);
+    return filtered[randomIndex] || 'Segredo';
+  }
+
+  getRandomWordList(count: number): string[] {
+    const allWords = [...new Set([...WORDS_CHA_OU_CAFE, ...WORDS_CONTATO, ...WORDS_IMPOSTOR.map(i => i.word)])];
+    const shuffled = [...allWords].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
   }
 
   async getGames(): Promise<Game[]> {

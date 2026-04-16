@@ -25,8 +25,11 @@
       <h1>{{ game.name }}</h1>
       <p class="description">{{ game.description }}</p>
 
-      <div class="player-stepper" *ngIf="game.id === 'ito' || game.id === 'batata-quente' || game.id === 'pergunta-do-impostor' || game.id === 'impostor' || game.id === 'qual-e-a-nota'">
-        <label>{{ game.id === 'qual-e-a-nota' ? 'Número de Duplas:' : 'Número de Jogadores:' }}</label>
+      <div class="player-stepper" *ngIf="game.id === 'ito' || game.id === 'batata-quente' || game.id === 'pergunta-do-impostor' || game.id === 'impostor' || game.id === 'qual-e-a-nota' || game.id === 'jogo-da-lista'">
+        <label>
+          {{ game.id === 'qual-e-a-nota' ? 'Número de Duplas:' : 
+             game.id === 'jogo-da-lista' ? 'Quantidade de Palavras:' : 'Número de Jogadores:' }}
+        </label>
         <div class="stepper-controls">
           <button class="step-btn" (click)="players = players - 1; imposters = imposters > maxImposters ? maxImposters : imposters" [disabled]="players <= minPlayers">-</button>
           <span class="step-value">{{ players }}</span>

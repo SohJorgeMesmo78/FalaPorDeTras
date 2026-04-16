@@ -44,6 +44,10 @@ export class GameComponent implements OnInit {
       if (this.game?.id === 'qual-e-a-nota') {
         this.players = 2;
       }
+
+      if (this.game?.id === 'jogo-da-lista') {
+        this.players = 5;
+      }
     }
   }
 
@@ -68,7 +72,8 @@ export class GameComponent implements OnInit {
       this.game?.id === 'quem-sou-eu' ||
       this.game?.id === 'cha-ou-cafe' ||
       this.game?.id === 'contato' ||
-      this.game?.id === 'adivinhe-a-palavra'
+      this.game?.id === 'adivinhe-a-palavra' ||
+      this.game?.id === 'jogo-da-lista'
     ) {
       // These games don't require the player list
       this.startGameWithPlayers();
@@ -143,6 +148,10 @@ export class GameComponent implements OnInit {
     } else if (this.game?.id === 'qual-e-a-nota') {
       this.router.navigate(['/play', this.game.id], {
         queryParams: { pairs: this.players },
+      });
+    } else if (this.game?.id === 'jogo-da-lista') {
+      this.router.navigate(['/play', this.game.id], {
+        queryParams: { count: this.players },
       });
     } else if (this.game?.id === 'contato') {
       this.router.navigate(['/play', this.game.id]);
