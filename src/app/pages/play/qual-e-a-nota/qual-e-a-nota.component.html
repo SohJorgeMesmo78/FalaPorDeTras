@@ -28,12 +28,15 @@
         <div class="label" style="font-size: 1.2rem; color: var(--primary); margin-bottom: 8px;">TEMA ATUAL:</div>
         <div style="font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 48px; opacity: 0.8;">{{ theme }}</div>
 
-        <div class="label" style="font-size: 1.5rem; margin-bottom: 24px;">Quem vai saber a nota da dupla:</div>
-        <div class="theme-text" [style.color]="currentPairData.color" style="font-size: 3.5rem; margin-bottom: 48px; font-weight: 900;">
-          {{ currentPairData.name || 'Dupla ' + currentPair }}
+        <div class="label" style="font-size: 1.5rem; margin-bottom: 24px;">{{ mode === '1xtodos' ? 'Passe para quem vai dar a dica:' : 'Quem vai saber a nota da dupla:' }}</div>
+        <div class="theme-text" [style.color]="currentPairData?.color || 'var(--primary)'" style="font-size: 3.5rem; margin-bottom: 48px; font-weight: 900;">
+          {{ mode === '1xtodos' ? 'O MESTRE' : (currentPairData?.name || 'Dupla ' + currentPair) }}
         </div>
         
-        <button class="btn-primary" (click)="revealGrade()" [style.background]="currentPairData.color" [style.box-shadow]="'0 0 30px ' + currentPairData.color" style="padding: 24px; border-radius: 20px; font-size: 1.5rem; margin-top: 24px; color: #000;">
+        <button class="btn-primary" (click)="revealGrade()" 
+                [style.background]="currentPairData?.color || 'var(--primary)'" 
+                [style.box-shadow]="'0 0 30px ' + (currentPairData?.color || 'var(--primary)')" 
+                style="padding: 24px; border-radius: 20px; font-size: 1.5rem; margin-top: 24px; color: #000;">
           Ver Nota Secreta
         </button>
       </div>
@@ -43,20 +46,22 @@
     <ng-container *ngIf="gameState === 'revealed'">
       <div class="playing-wrapper reveal-animation" style="height: 100%; display: flex; flex-direction: column; padding: 24px;">
         <div class="label" style="font-size: 1.1rem; color: var(--primary); margin-bottom: 24px; letter-spacing: 1px;">
-          A NOTA DA DUPLA <span [style.color]="currentPairData.color">{{ currentPairData.name || 'DUPLA ' + currentPair }}</span> É:
+           {{ mode === '1xtodos' ? 'SUA NOTA SECRETA É:' : 'A NOTA DA DUPLA ' }}
+           <span *ngIf="mode !== '1xtodos'" [style.color]="currentPairData?.color">{{ currentPairData?.name || 'DUPLA ' + currentPair }}</span>
+           {{ mode !== '1xtodos' ? ' É:' : '' }}
         </div>
         
-        <div class="secret-word bounce-in" [style.color]="currentPairData.color" [style.text-shadow]="'0 0 40px ' + currentPairData.color" style="font-size: 8rem; font-weight: 900; line-height: 1; margin-bottom: 24px;">
+        <div class="secret-word bounce-in" [style.color]="currentPairData?.color || 'var(--primary)'" [style.text-shadow]="'0 0 40px ' + (currentPairData?.color || 'var(--primary)')" style="font-size: 8rem; font-weight: 900; line-height: 1; margin-bottom: 24px;">
           {{ grades[currentPair - 1] }}
         </div>
 
         <p style="color: var(--text-muted); text-align: center; margin-bottom: 48px; line-height: 1.6;">
-           Dê uma dica para o seu parceiro! Lembre-se, para este tema: <br>
+           Dê uma dica para {{ mode === '1xtodos' ? 'todos adivinharem' : 'o seu parceiro' }}! Lembre-se, para este tema: <br>
            <strong style="color: #fff;">"{{ theme }}"</strong>
         </p>
         
         <button class="btn-primary" (click)="nextPair()" style="margin-top: auto; border-radius: 20px; font-size: 1.2rem; padding: 20px;">
-          {{ currentPair < pairsCount ? 'Ocultar e Próxima Dupla' : 'Ocultar e Finalizar' }}
+          {{ mode === '1xtodos' ? 'Ocultar e Finalizar' : (currentPair < pairsCount ? 'Ocultar e Próxima Dupla' : 'Ocultar e Finalizar') }}
         </button>
       </div>
     </ng-container>
@@ -67,15 +72,12 @@
         <div class="label" style="font-size: 1.5rem; color: #ffeb3b; margin-bottom: 24px; font-weight: 900;">HORA DE ADIVINHAR! 🎯</div>
         
         <p style="font-size: 1.2rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 48px; text-align: center;">
-          As duplas devem dar suas dicas e os parceiros devem adivinhar as notas!
+          {{ mode === '1xtodos' ? 'O Mestre deu a dica! Agora todos devem tentar adivinhar qual foi a nota.' : 'As duplas devem dar suas dicas e os parceiros devem adivinhar as notas!' }}
         </p>
 
         <div style="width: 100%; display: flex; flex-direction: column; gap: 16px;">
           <button class="btn-primary" (click)="resetGame()">
             Nova Rodada
-          </button>
-          <button class="btn-secondary" (click)="changeTheme()" style="border: 1px solid var(--primary);">
-            Trocar Tema
           </button>
           <a routerLink="/" class="btn-secondary" style="border: none; text-decoration: underline;">
             Menu Inicial

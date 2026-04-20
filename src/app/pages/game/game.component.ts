@@ -18,7 +18,7 @@ export class GameComponent implements OnInit {
   players: number = 4;
   imposters: number = 1;
   hasHint: boolean = true;
-
+  selectedMode: 'duplas' | '1xtodos' = 'duplas';
   showPlayerSelector: boolean = false;
 
   route = inject(ActivatedRoute);
@@ -76,7 +76,8 @@ export class GameComponent implements OnInit {
       this.game?.id === 'cha-ou-cafe' ||
       this.game?.id === 'contato' ||
       this.game?.id === 'adivinhe-a-palavra' ||
-      this.game?.id === 'jogo-da-lista'
+      this.game?.id === 'jogo-da-lista' ||
+      (this.game?.id === 'qual-e-a-nota' && this.selectedMode === '1xtodos')
     ) {
       // These games don't require the player list
       this.startGameWithPlayers();
@@ -150,7 +151,7 @@ export class GameComponent implements OnInit {
       this.router.navigate(['/play', this.game.id]);
     } else if (this.game?.id === 'qual-e-a-nota') {
       this.router.navigate(['/play', this.game.id], {
-        queryParams: { pairs: this.players },
+        queryParams: { pairs: this.players, mode: this.selectedMode },
       });
     } else if (this.game?.id === 'jogo-da-lista') {
       this.router.navigate(['/play', this.game.id], {

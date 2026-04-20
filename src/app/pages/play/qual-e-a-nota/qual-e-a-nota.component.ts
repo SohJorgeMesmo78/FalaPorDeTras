@@ -19,18 +19,22 @@ export class QualEANotaComponent implements OnInit {
 
   gameState: 'setup_theme' | 'waiting' | 'revealed' | 'voting' = 'setup_theme';
   
+  mode: 'duplas' | '1xtodos' = 'duplas';
   pairsCount: number = 2;
   currentPair: number = 1;
   grades: number[] = [];
   theme: string = '';
 
   get currentPairData() {
+    if (this.mode === '1xtodos') return null;
     return this.gameService.customPlayers[this.currentPair - 1];
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.pairsCount = params['pairs'] ? parseInt(params['pairs'], 10) : 2;
+      this.mode = params['mode'] || 'duplas';
+      
       if (isPlatformBrowser(this.platformId)) {
         this.setupGame();
       }
@@ -39,7 +43,8 @@ export class QualEANotaComponent implements OnInit {
 
   setupGame() {
     this.grades = [];
-    for (let i = 0; i < this.pairsCount; i++) {
+    const count = this.mode === '1xtodos' ? 1 : this.pairsCount;
+    for (let i = 0; i < count; i++) {
       this.grades.push(Math.floor(Math.random() * 10) + 1);
     }
     this.theme = this.itoService.getRandomTheme();

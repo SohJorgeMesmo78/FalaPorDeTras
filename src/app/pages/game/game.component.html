@@ -25,7 +25,15 @@
       <h1>{{ game.name }}</h1>
       <p class="description">{{ game.description }}</p>
 
-      <div class="player-stepper" *ngIf="game.id === 'ito' || game.id === 'batata-quente' || game.id === 'pergunta-do-impostor' || game.id === 'impostor' || game.id === 'qual-e-a-nota' || game.id === 'jogo-da-lista' || game.id === 'onde-estou'">
+      <div class="player-stepper" *ngIf="game.id === 'qual-e-a-nota'" style="margin-bottom: 24px;">
+        <label>Modo de Jogo:</label>
+        <div class="mode-selector">
+          <button class="mode-btn" [class.active]="selectedMode === 'duplas'" (click)="selectedMode = 'duplas'">Duplas x Duplas</button>
+          <button class="mode-btn" [class.active]="selectedMode === '1xtodos'" (click)="selectedMode = '1xtodos'">1 x Todos</button>
+        </div>
+      </div>
+
+      <div class="player-stepper" *ngIf="(game.id === 'ito' || game.id === 'batata-quente' || game.id === 'pergunta-do-impostor' || game.id === 'impostor' || game.id === 'qual-e-a-nota' || game.id === 'jogo-da-lista' || game.id === 'onde-estou') && (game.id !== 'qual-e-a-nota' || selectedMode === 'duplas')">
         <label>
           {{ game.id === 'qual-e-a-nota' ? 'Número de Duplas:' : 
              game.id === 'jogo-da-lista' ? 'Quantidade de Palavras:' : 'Número de Jogadores:' }}
