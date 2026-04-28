@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { WORDS_CHA_OU_CAFE } from './cha-ou-cafe.service';
-import { WORDS_CONTATO } from './contato.service';
-import { WORDS_IMPOSTOR } from './impostor.service';
+import palavrasChaOuCafe from '../data/palavras_cha_ou_cafe.json';
+import palavrasContato from '../data/palavras_contato.json';
+import palavrasImpostor from '../data/palavras_impostor.json';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +10,9 @@ export class WordPoolService {
   private getAllWords(): string[] {
     return [
       ...new Set([
-        ...WORDS_CHA_OU_CAFE,
-        ...WORDS_CONTATO,
-        ...WORDS_IMPOSTOR.map((i) => i.word),
+        ...palavrasChaOuCafe,
+        ...palavrasContato,
+        ...palavrasImpostor.map((i: any) => i.word),
       ]),
     ];
   }

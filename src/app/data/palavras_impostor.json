@@ -1,0 +1,233 @@
+[
+  { "word": "Leite", "hints": ["Vaca", "Cabra", "Branco", "Líquido", "Neném"] },
+  {
+    "word": "Avião",
+    "hints": ["Céu", "Transporte", "Asas", "Turbina", "Piloto"]
+  },
+  { "word": "Futebol", "hints": ["Bola", "Campo", "Gol", "Chute", "Estádio"] },
+  {
+    "word": "Pizza",
+    "hints": ["Itália", "Queijo", "Redonda", "Forno", "Fatia"]
+  },
+  {
+    "word": "Chocolate",
+    "hints": ["Doce", "Cacau", "Marrom", "Barra", "Derrete"]
+  },
+  { "word": "Praia", "hints": ["Sol", "Areia", "Mar", "Férias", "Verão"] },
+  {
+    "word": "Cinema",
+    "hints": ["Pipoca", "Tela", "Filme", "Escuro", "Cadeira"]
+  },
+  {
+    "word": "Escola",
+    "hints": ["Lápis", "Professor", "Aula", "Caderno", "Prova"]
+  },
+  {
+    "word": "Hospital",
+    "hints": ["Médico", "Remédio", "Doente", "Ambulância", "Curativo"]
+  },
+  {
+    "word": "Natal",
+    "hints": ["Papai Noel", "Árvore", "Presente", "Dezembro", "Família"]
+  },
+  {
+    "word": "Cachorro",
+    "hints": ["Latido", "Osso", "Melhor Amigo", "Pata", "Estimação"]
+  },
+  {
+    "word": "Café",
+    "hints": ["Xícara", "Preto", "Manhã", "Acordar", "Quente"]
+  },
+  {
+    "word": "Telefone",
+    "hints": ["Ligação", "Celular", "Número", "Alô", "Mensagem"]
+  },
+  {
+    "word": "Relógio",
+    "hints": ["Horas", "Tempo", "Pulso", "Ponteiro", "Despertador"]
+  },
+  {
+    "word": "Computador",
+    "hints": ["Teclado", "Internet", "Tela", "Mouse", "Programação"]
+  },
+  {
+    "word": "Cachorro-quente",
+    "hints": ["Salsicha", "Pão", "Mostarda", "Ketchup", "Calçada"]
+  },
+  {
+    "word": "Pão de Queijo",
+    "hints": ["Minas", "Queijo", "Farinha", "Forma", "Café da Manhã"]
+  },
+  {
+    "word": "Brigadeiro",
+    "hints": ["Chocolate", "Leite Condensado", "Granulado", "Festa", "Doce"]
+  },
+  {
+    "word": "Feijoada",
+    "hints": ["Feijão Preto", "Porco", "Linguiça", "Arroz", "Farofa"]
+  },
+  {
+    "word": "Açaí",
+    "hints": ["Roxo", "Amazônia", "Tigela", "Granola", "Fruta"]
+  },
+  {
+    "word": "Geladeira",
+    "hints": ["Frio", "Comida", "Porta", "Luz", "Congelador"]
+  },
+  {
+    "word": "Televisão",
+    "hints": ["Tela", "Canais", "Controle Remoto", "Assistir", "Séries"]
+  },
+  {
+    "word": "Bicicleta",
+    "hints": ["Pedal", "Duas Rodas", "Ciclismo", "Guidão", "Corrente"]
+  },
+  {
+    "word": "Celular",
+    "hints": ["Tela", "Tocar", "Apps", "WhatsApp", "Bateria"]
+  },
+  {
+    "word": "Avião",
+    "hints": ["Céu", "Transporte", "Asas", "Turbina", "Piloto"]
+  },
+  {
+    "word": "Sílvia Santos",
+    "hints": ["Programa", "TV", "Cadeira de Rodas", "Loteria", "Baú"]
+  },
+  {
+    "word": "Monalisa",
+    "hints": ["Quadro", "Sorriso", "Louvre", "Pintura", "Italiana"]
+  },
+  {
+    "word": "Cachorro",
+    "hints": ["Latido", "Osso", "Melhor Amigo", "Pata", "Estimação"]
+  },
+  {
+    "word": "Gato",
+    "hints": ["Mia", "Pelo", "Ronronar", "Independente", "Patas"]
+  },
+  { "word": "Leão", "hints": ["Selva", "Juba", "Rei", "Rugido", "Felino"] },
+  { "word": "Praia", "hints": ["Sol", "Areia", "Mar", "Férias", "Verão"] },
+  {
+    "word": "Montanha",
+    "hints": ["Pedra", "Trilha", "Escalar", "Cume", "Altitude"]
+  },
+  {
+    "word": "Câmera Fotográfica",
+    "hints": ["Fotos", "Lente", "Flash", "Tripé", "Imagens"]
+  },
+  {
+    "word": "Violão",
+    "hints": ["Música", "Cordas", "Acordes", "Mão", "Palheta"]
+  },
+  {
+    "word": "Piscina",
+    "hints": ["Água", "Nadar", "Mermaid", "Roupa de Banho", "Azul"]
+  },
+  {
+    "word": "Capivara",
+    "hints": ["Roedor", "Amigável", "Sul do Brasil", "Água", "Dentes"]
+  },
+  {
+    "word": "Pastel de Feira",
+    "hints": ["Frito", "Gorduroso", "Feira", "Recheio", "Óleo"]
+  },
+  {
+    "word": "Controle Remoto",
+    "hints": ["Televisão", "Canais", "Bateria", "Botões", "Mudar"]
+  },
+  {
+    "word": "Arco e Flecha",
+    "hints": ["Caça", "Esporte", "Mira", "Pena", "Alvo"]
+  },
+  { "word": "Dragão", "hints": ["Fogo", "Asas", "Lenda", "Medo", "Tesouro"] },
+  {
+    "word": "Pipoca",
+    "hints": ["Cinema", "Milho", "Manteiga", "Salgada", "Explosão"]
+  },
+  {
+    "word": "Guarda-chuva",
+    "hints": ["Chuva", "Abrigo", "Abrir", "Cabo", "Proteção"]
+  },
+  {
+    "word": "Batman",
+    "hints": ["Gothan", "Justiçeiro", "Capuz", "Mascarado", "Bruce Wayne"]
+  },
+  {
+    "word": "Neymar",
+    "hints": ["Futebol", "Camisa 10", "Gol", "Drible", "Seleção"]
+  },
+  {
+    "word": "Microfone",
+    "hints": ["Cantar", "Palco", "Voz", "Som", "Apresentador"]
+  },
+  {
+    "word": "Astronauta",
+    "hints": ["Espaço", "NASA", "Foguete", "Gravidade Zero", "Luva"]
+  },
+  {
+    "word": "Pizza",
+    "hints": ["Itália", "Queijo", "Redonda", "Forno", "Fatia"]
+  },
+  {
+    "word": "Cachoeira",
+    "hints": ["Água", "Pedra", "Natureza", "Queda", "Rio"]
+  },
+  {
+    "word": "Liquidificador",
+    "hints": ["Suco", "Lâminas", "Líquido", "Jararaca", "Botão"]
+  },
+  {
+    "word": "Pikachu",
+    "hints": ["Pokémon", "Elétrico", "Amarelo", "Amigo", "Bola de Trovão"]
+  },
+  { "word": "Espada", "hints": ["Luta", "Medieval", "Aço", "Guerra", "Corte"] },
+  {
+    "word": "Tênis",
+    "hints": ["Correr", "Esporte", "Calçado", "Pés", "Tênis de Mesa"]
+  },
+  {
+    "word": "Girafa",
+    "hints": ["Pescoço", "África", "Manchas", "Comida", "Altura"]
+  },
+  {
+    "word": "Harry Potter",
+    "hints": ["Bruxo", "Varinha", "Hogwarts", "Óculos", "Magia"]
+  },
+  {
+    "word": "Fone de Ouvido",
+    "hints": ["Música", "Ouvido", "Cabo", "Fone", "Bluetooth"]
+  },
+  {
+    "word": "Espelho",
+    "hints": ["Reflexo", "Beleza", "Quarto", "Vidro", "Imagem"]
+  },
+  {
+    "word": "Dinossauro",
+    "hints": ["Extinto", "Fóssil", "T-Rex", "Pterodáctilo", "Cauda"]
+  },
+  {
+    "word": "Hambúrguer",
+    "hints": ["Carne", "Pão", "Queijo", "Comida Rápida", "Bacon"]
+  },
+  {
+    "word": "Cadeira de Balanço",
+    "hints": ["Conforto", "Vovó", "Madeira", "Balançar", "Descanso"]
+  },
+  {
+    "word": "Relógio de Pulso",
+    "hints": ["Horas", "Tempo", "Pulseira", "Ponteiro", "Despertador"]
+  },
+  {
+    "word": "Lobo",
+    "hints": ["Uivo", "Floresta", "Noite", "Corrente", "Animal"]
+  },
+  {
+    "word": "Vampiro",
+    "hints": ["Sangue", "Noite", "Dentes", "Dracula", "Maldição"]
+  },
+  {
+    "word": "Óculos de Sol",
+    "hints": ["Verão", "Proteção", "Preto", "Olhos", "Moda"]
+  }
+]

@@ -1,0 +1,332 @@
+[
+  {
+    "word": "Escola",
+    "hints": ["Crianças", "Aprender", "Lousa", "Recreio", "Mochilas"]
+  },
+  {
+    "word": "Hospital",
+    "hints": ["Médicos", "Saúde", "Cuidado", "Silêncio", "Emergência"]
+  },
+  { "word": "Praia", "hints": ["Areia", "Sol", "Mar", "Férias", "Bronzeador"] },
+  {
+    "word": "Supermercado",
+    "hints": ["Carrinho", "Compras", "Caixa", "Alimentos", "Prateleiras"]
+  },
+  {
+    "word": "Academia",
+    "hints": ["Pesos", "Treino", "Suor", "Músculos", "Esteira"]
+  },
+  {
+    "word": "Cinema",
+    "hints": ["Pipoca", "Tela Grande", "Filme", "Escuro", "Ingresso"]
+  },
+  {
+    "word": "Restaurante",
+    "hints": ["Comida", "Garçom", "Cardápio", "Mesa", "Conta"]
+  },
+  {
+    "word": "Aeroporto",
+    "hints": ["Avião", "Malas", "Portão de Embarque", "Passaporte", "Viagem"]
+  },
+  {
+    "word": "Estádio de Futebol",
+    "hints": ["Torcida", "Campo", "Gol", "Bandeiras", "Uniforme"]
+  },
+  {
+    "word": "Biblioteca",
+    "hints": ["Livros", "Silêncio", "Estudo", "Prateleiras", "Leitura"]
+  },
+  {
+    "word": "Circo",
+    "hints": ["Palhaço", "Picadeiro", "Pipoca", "Malabares", "Alegria"]
+  },
+  {
+    "word": "Zoológico",
+    "hints": ["Animais", "Gaiolas", "Visitação", "Natureza", "Ingresso"]
+  },
+  {
+    "word": "Parque de Diversões",
+    "hints": [
+      "Montanha-russa",
+      "Roda-gigante",
+      "Algodão Doce",
+      "Brinquedos",
+      "Fila"
+    ]
+  },
+  {
+    "word": "Casamento",
+    "hints": ["Noiva", "Festa", "Bolo", "Vestido", "Igreja"]
+  },
+  {
+    "word": "Escritório",
+    "hints": ["Trabalho", "Computador", "Reunião", "Café", "Mesa"]
+  },
+  {
+    "word": "Banco",
+    "hints": ["Fila", "Senha", "Dinheiro", "Segurança", "Gerente"]
+  },
+  {
+    "word": "Cemitério",
+    "hints": ["Flores", "Homenagem", "Paz", "Mármore", "Velas"]
+  },
+  {
+    "word": "Padaria",
+    "hints": ["Cheiro bom", "Café da manhã", "Balcão", "Fornada", "Cesta"]
+  },
+  {
+    "word": "Hotel",
+    "hints": [
+      "Recepção",
+      "Check-in",
+      "Turistas",
+      "Andares",
+      "Serviço de quarto"
+    ]
+  },
+  {
+    "word": "Salão de Beleza",
+    "hints": ["Espelho", "Cabelo", "Corte", "Transformação", "Agendamento"]
+  },
+  {
+    "word": "Museu",
+    "hints": ["Exposição", "História", "Arte", "Guia", "Antiguidades"]
+  },
+  {
+    "word": "Posto de Gasolina",
+    "hints": ["Combustível", "Bombas", "Parada", "Conveniência", "Calibragem"]
+  },
+  {
+    "word": "Fazenda",
+    "hints": ["Cerca", "Criação", "Terra", "Madrugada", "Colheita"]
+  },
+  {
+    "word": "Delegacia",
+    "hints": ["Ocorrência", "Autoridade", "Depoimento", "Viatura", "Uniforme"]
+  },
+  {
+    "word": "Teatro",
+    "hints": ["Palco", "Cortinas", "Aplausos", "Apresentação", "Ensaio"]
+  },
+  {
+    "word": "Laboratório",
+    "hints": ["Exames", "Tubos", "Resultados", "Branco", "Análise"]
+  },
+  {
+    "word": "Shopping",
+    "hints": [
+      "Vitrines",
+      "Escada rolante",
+      "Praça de alimentação",
+      "Estacionamento",
+      "Passeio"
+    ]
+  },
+  {
+    "word": "Oficina Mecânica",
+    "hints": ["Ferramentas", "Peças", "Graxa", "Reparo", "Motor"]
+  },
+  {
+    "word": "Igreja",
+    "hints": ["Bancos", "Cerimônia", "Comunidade", "Altar", "Fé"]
+  },
+  {
+    "word": "Acampamento",
+    "hints": ["Barraca", "Lanterna", "Fogueira", "Céu estrelado", "Isolamento"]
+  },
+  {
+    "word": "Lavanderia",
+    "hints": ["Máquinas", "Sabão", "Dobras", "Roupa suja", "Ciclo"]
+  },
+  {
+    "word": "Dentista",
+    "hints": ["Broca", "Sorriso", "Mesa de metal", "Assistente", "Anestesia"]
+  },
+  {
+    "word": "Paróquia",
+    "hints": ["Padre", "Missa", "Comunhão", "Batismo", "Bíblia"]
+  },
+  {
+    "word": "Churrascaria",
+    "hints": ["Carne", "Espeto", "Rodízio", "Garçom", "Mesa farta"]
+  },
+  {
+    "word": "Loja de Roupas",
+    "hints": ["Provador", "Vitrine", "Manequim", "Preço", "Cartão"]
+  },
+  {
+    "word": "Balada",
+    "hints": ["Música alta", "Dança", "Festa", "Bar", "Iluminação"]
+  },
+  {
+    "word": "Floricultura",
+    "hints": ["Rosas", "Buquê", "Vaso", "Presente", "Perfume floral"]
+  },
+  {
+    "word": "Escola de Idiomas",
+    "hints": ["Professor", "Placar", "Lousa branca", "Inglês", "Caderno"]
+  },
+  { "word": "Fórum", "hints": ["Advogado", "Juiz", "Toga", "Lei", "Veredito"] },
+  {
+    "word": "Coleta de Sangue",
+    "hints": ["Agulha", "Braço", "Atendente", "Testes", "Tubos"]
+  },
+  {
+    "word": "Quitanda",
+    "hints": ["Frutas", "Verduras", "Balança", "Feira", "Preço baixo"]
+  },
+  {
+    "word": "Cartório",
+    "hints": [
+      "Documentos",
+      "Selo",
+      "Assinatura",
+      "Certidão",
+      "Reconhecimento de firma"
+    ]
+  },
+  {
+    "word": "Clínica Médica",
+    "hints": ["Consulta", "Acolhimento", "Seringa", "Uniforme branco", "Exames"]
+  },
+  {
+    "word": "Pizzaria",
+    "hints": ["Forno", "Mussarela", "Fatia", "Mesa redonda", "Entrega"]
+  },
+  {
+    "word": "Barbearia",
+    "hints": ["Navalha", "Barba", "Espelho", "Cadeira hidráulica", "Shaving"]
+  },
+  {
+    "word": "Escola de Dança",
+    "hints": ["Sapateado", "Música", "Bailarina", "Movimento", "Espelho grande"]
+  },
+  {
+    "word": "Mercado",
+    "hints": [
+      "Corredor",
+      "Carrinho",
+      "Promotoras",
+      "Etiquetas",
+      "Frente de caixa"
+    ]
+  },
+  {
+    "word": "Consultório Odontológico",
+    "hints": [
+      "Cadeira giratória",
+      "Aspirador",
+      "Luz forte",
+      "Gaze",
+      "Pasta de dente"
+    ]
+  },
+  {
+    "word": "Parque Aquático",
+    "hints": ["Tobogã", "Piscina", "Saída de praia", "Protetor solar"]
+  },
+  {
+    "word": "Boliche",
+    "hints": ["Pin", "Bola", "Pista", "Strike", "Graderia"]
+  },
+  {
+    "word": "Cafeteria",
+    "hints": ["Aroma", "Café", "Moedor", "Balcão", "Sabor"]
+  },
+  {
+    "word": "Ioga",
+    "hints": ["Tapete", "Alongamento", "Paz", "Respiração", "Silêncio"]
+  },
+  {
+    "word": "Cozinha",
+    "hints": [" Fogão", "Panela", "Comida", "Cheiro", "Utensílios"]
+  },
+  {
+    "word": "Hotel Fazenda",
+    "hints": ["Ar puro", "Animais", "Piscina", "Tranquilidade", "Caminhada"]
+  },
+  {
+    "word": "Teleférico",
+    "hints": ["Cabine", "Vista", "Altitude", "Vento", "Poltrona"]
+  },
+  {
+    "word": "Campo de Futebol",
+    "hints": ["Gramado", "Trave", "Bola", "Chuteira", "Apito"]
+  },
+  {
+    "word": "Jardim Botânico",
+    "hints": ["Plantas", "Flores", "Caminho", "Natureza", "Aroma"]
+  },
+  {
+    "word": "Pedreira",
+    "hints": ["Pedra", "Caminhão", "Pó", "Barulho", "Escavadeira"]
+  },
+  {
+    "word": "Fábrica",
+    "hints": [
+      "Linha de produção",
+      "Máquinas",
+      "Uniforme",
+      "Ruído",
+      "Controle de qualidade"
+    ]
+  },
+  {
+    "word": "Loja de Games",
+    "hints": ["Controle", "Placa de vídeo", "Fones", "Jogos", "Competição"]
+  },
+  {
+    "word": "Consultório de Fisioterapia",
+    "hints": ["Mesa", "Faixa elástica", "Mobilidade", "Dor", "Reabilitação"]
+  },
+  {
+    "word": "Sala de Reunião",
+    "hints": ["Mesa", "Cadeira", "Projetor", "Pauta", "Café"]
+  },
+  {
+    "word": "Loja de Bicicletas",
+    "hints": ["Guidão", "Pneus", "Pedal", "Corrente", "Capacete"]
+  },
+  {
+    "word": "Feira Livre",
+    "hints": [
+      "Banca",
+      "Barganha",
+      "Produtos frescos",
+      "Caminhada",
+      "Comida de rua"
+    ]
+  },
+  {
+    "word": "Casa de Shows",
+    "hints": ["Palco", "Bar", "Multidão", "Luzes", "Música"]
+  },
+  {
+    "word": "Estúdio Fotográfico",
+    "hints": ["Luz", "Câmera", "Fundo", "Modelo", "Obturador"]
+  },
+  {
+    "word": "Cantina Italiana",
+    "hints": ["Massa", "Vinho", "Napolitana", "Mesa longa", "Ambiente familiar"]
+  },
+  {
+    "word": "Escola de Música",
+    "hints": ["Instrumento", "Violão", "Teclado", "Professor", "Partitura"]
+  },
+  {
+    "word": "Oficina de Artesanato",
+    "hints": ["Mão", "Ferramenta", "Peça", "Cor", "Criatividade"]
+  },
+  {
+    "word": "Lava-jato",
+    "hints": ["Mangueira", "Espuma", "Polimento", "Lavagem", "Enxágue"]
+  },
+  {
+    "word": "Pista de Patinação",
+    "hints": ["Patinador", "Gelo", "Skate", "Centro", "Trava"]
+  },
+  {
+    "word": "Coletivo",
+    "hints": ["Fila", "Porta", "Motorista", "Janela", "Viagem"]
+  }
+]

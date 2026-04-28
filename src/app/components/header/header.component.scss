@@ -9,6 +9,7 @@
     flex: 1;
     display: flex;
     justify-content: flex-start;
+    gap: 10px;
   }
   
   .right-section {
@@ -53,6 +54,27 @@
       color: #fff;
       border-color: var(--primary);
       transform: translateX(-4px) scale(1.1);
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+  }
+
+  .home-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    &:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      transform: scale(1.1);
       box-shadow: 0 0 20px var(--primary-glow);
     }
   }
